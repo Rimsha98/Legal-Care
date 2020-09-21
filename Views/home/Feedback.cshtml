@@ -1,0 +1,228 @@
+﻿
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+@section register{
+    <link href="~/Content/bootstrap330.min.css" rel="stylesheet" id="bootstrap-css" />
+    <script src="~/Scripts/bootstrap330.min.js"></script>
+    <script src="~/Scripts/jquery1111.min.js"></script>
+    <script src="~/Scripts/jquery191.min.js"></script>
+  
+
+    <style>
+        .custom-dropdown {
+            height: 35px;
+            border-radius: 4px;
+            border: 1px solid #CED4DA;
+            padding: 0px 10px;
+            font-size: 14px;
+            width: 100%;
+        }
+
+
+
+        .user-image {
+            height: 35px;
+            width: 35px;
+            object-fit: cover;
+        }
+
+        #Attorneys-List tbody tr td {
+            vertical-align: middle;
+            font-size: 12px;
+            padding: 10px;
+        }
+
+        #Attorneys-List label {
+            color: #AFA939;
+            font-weight: 600;
+        }
+
+        .type {
+            display: block;
+            line-height: 1.4;
+            color: black;
+            font-weight: normal;
+        }
+
+        .head-small {
+            float: left;
+            font-size: 14px;
+            color: black;
+        }
+
+        .table-image {
+            width: 5%;
+        }
+
+        .table-data {
+            text-align: left;
+        }
+
+        .table-button {
+            border: none;
+            background-color: #AFA939;
+            color: #fff;
+            height: 30px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            .table-button:hover {
+                background-color: #ded871;
+            }
+
+            .table-button:focus {
+                outline: none;
+            }
+
+        .table th, .table td {
+            border: none !important;
+        }
+
+        .table-striped > tbody > tr:nth-child(odd) > td,
+        .table-striped > tbody > tr:nth-child(odd) > th {
+            background-color: #FCFCFC;
+            border: none !important;
+        }
+
+        .pagination {
+            margin-right: 15px;
+        }
+
+            .pagination > li > a {
+                color: #222831 !important;
+            }
+
+            .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover,
+            .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+                background-color: #AFA939 !important;
+                border-color: #AFA939 !important;
+                color: #fff !important;
+            }
+    </style>
+}
+
+<section>
+    <div class="row pb-4" style="background-color: #F8F9FA;">
+        <div class="col-md-4 mt-2 mb-2">
+            <div class="search-bar">
+                <input type="text" placeholder="enter text to search ..." class="float-left" />
+                <button type="button" class="float-left search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4 mt-2 mb-2">
+            <select class="custom-dropdown float-right">
+                <option>Criminal Attorneys</option>
+                <option>Finance Attorneys</option>
+                <option>Tax Attorneys</option>
+            </select>
+        </div>
+    </div>
+
+    <div>
+        <div class="sub-content">
+            <div class="container-fluid p-0 m-0">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="head-small m-4">9 Attorneys Found</h1>
+                        <div class="table-responsive">
+                            <table id="Attorneys-List" class="table table-striped">
+                                <tr>
+                                    <td class="table-image pl-4"><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td class="table-data pl-3">
+                                        <label>Syeda Iqra Waseem<span class="type">Criminal Attorney</span></label>
+                                    </td>
+                                    <td class="pr-4"><button class="table-button float-right pl-3 pr-3">View Feedback</button></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="table-image pl-4"><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td class="table-data pl-3">
+                                        <label>Syeda Iqra Waseem<span class="type">Criminal Attorney</span></label>
+                                    </td>
+                                    <td class="pr-4"><button class="table-button float-right pl-3 pr-3">View Feedback</button></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="table-image pl-4"><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td class="table-data pl-3">
+                                        <label>Syeda Iqra Waseem<span class="type">Criminal Attorney</span></label>
+                                    </td>
+                                    <td class="pr-4"><button class="table-button float-right pl-3 pr-3">View Feedback</button></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="table-image pl-4"><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td class="table-data pl-3">
+                                        <label>Syeda Iqra Waseem<span class="type">Criminal Attorney</span></label>
+                                    </td>
+                                    <td class="pr-4"><button class="table-button float-right pl-3 pr-3">View Feedback</button></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="table-image pl-4"><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td class="table-data pl-3">
+                                        <label>Syeda Iqra Waseem<span class="type">Criminal Attorney</span></label>
+                                    </td>
+                                    <td class="pr-4"><button class="table-button float-right pl-3 pr-3">View Feedback</button></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="table-image pl-4"><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td class="table-data pl-3">
+                                        <label>Syeda Iqra Waseem<span class="type">Criminal Attorney</span></label>
+                                    </td>
+                                    <td class="pr-4"><button class="table-button float-right pl-3 pr-3">View Feedback</button></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="table-image pl-4"><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td class="table-data pl-3">
+                                        <label>Syeda Iqra Waseem<span class="type">Criminal Attorney</span></label>
+                                    </td>
+                                    <td class="pr-4"><button class="table-button float-right pl-3 pr-3">View Feedback</button></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="table-image pl-4"><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td class="table-data pl-3">
+                                        <label>Syeda Iqra Waseem<span class="type">Criminal Attorney</span></label>
+                                    </td>
+                                    <td class="pr-4"><button class="table-button float-right pl-3 pr-3">View Feedback</button></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="table-image pl-4"><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td class="table-data pl-3">
+                                        <label>Syeda Iqra Waseem<span class="type">Criminal Attorney</span></label>
+                                    </td>
+                                    <td class="pr-4"><button class="table-button float-right pl-3 pr-3">View Feedback</button></td>
+                                </tr>
+
+
+
+                            </table>
+
+                            <div class="clearfix"></div>
+                            <ul class="pagination pull-right">
+                                <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+

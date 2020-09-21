@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Messages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate pb-5 text-center">
+                <h1 class="mb-3 bread">My Profile</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="@Url.Action("index", "Home")">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>My Profiless <i class="ion-ios-arrow-forward"></i></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section m-0" style="padding-left:50px; padding-right:50px">
+
+
+    <h3>Compose Article</h3>
+    <div class=" row no-gutters ">
+
+        <div class="modal-body p-3 " style="background-color: #F8F9FA">
+            <form role="form" class="form-horizontal p-0">
+                <div class="form-group ">
+                    <div class="col-sm-12 p-0"><input type="email" class="form-control" id="inputTo" placeholder="Title" /></div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12 p-0"> <input type="email" class="form-control" id="inputTo" placeholder="Author Name" /></div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-12 p-0"><textarea class="form-control" rows="15" id="inputContent" placeholder="Content"></textarea></div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <div class="row no-gutters p-3" style="background-color: #F8F9FA">
+        <div class="col-sm-6">
+
+            <button class="btn btn-primary">
+                <span><i class='fas fa-bold'></i></span>
+            </button>
+
+            <button class="btn btn-primary">
+                <span><i class='fa fa-italic'></i></span>
+            </button>
+
+            <button class="btn btn-primary">
+                <span><i class='fa fa-underline'></i></span>
+            </button>
+
+        </div>
+
+        <div class="col-sm-6">
+
+            <button class="btn btn-primary" style="float:right;">Publish Article</button>
+        </div>
+
+    </div>
+
+
+</section>

@@ -1,0 +1,340 @@
+﻿@model SeedaniLegalCare.Models.Blog
+
+@{
+    ViewBag.Title = "blogSingle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section HeaderStyling{
+    <script src="https://kit.fontawesome.com/e1303a18ed.js" crossorigin="anonymous"></script>
+    <style>
+        .blogcontent{
+            text-align:left;
+            text-justify:distribute-center-last   !important;
+            color:black;
+            font-family:Arial !important;
+        }
+        .blogcontent p{
+            font-size :14px;
+            color:black !important;
+           
+        }
+        .blogcontent u{
+            font-size :14px;
+            color:black;
+           
+        }
+        .errormessage {
+            color: red !important;
+            font-size: 13px !important;
+            float: right;
+        }
+
+        .headerHeading {
+            color: #fff !important;
+        }
+
+        .errspan {
+            float: right;
+            margin-right: 8px;
+            margin-top: -32px;
+            position: relative;
+            z-index: 2;
+            color: red;
+            cursor: pointer;
+            display: none;
+        }
+
+
+        input.input-validation-error {
+            border: 0.083em solid red;
+        }
+
+        select.input-validation-error {
+            border: 0.083em solid red;
+        }
+
+
+        /* Bootstrap 4 text input with search icon */
+
+        .has-search .form-control {
+            padding-left: 2.375rem;
+        }
+
+        .has-search .form-control-feedback {
+            position: absolute;
+            z-index: 2;
+            display: block;
+            width: 2.375rem;
+            height: 2.375rem;
+            line-height: 2.375rem;
+            text-align: center;
+            pointer-events: none;
+            color: #aaa;
+        }
+
+      
+        .redboarder {
+            border: 1px solid red;
+        }
+
+      
+    </style>
+}
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate pb-5 text-center">
+                <h1 class="mb-3 bread">Blog Single</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="@Url.Action("index","Home")">Home <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="@Url.Action("blog","Home")">Blog <i class="ion-ios-arrow-forward"></i></a></span> <span>Blog Single <i class="ion-ios-arrow-forward"></i></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section ftco-degree-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 ftco-animate">
+
+                <div class="blogcontent">
+                    @Html.Raw(HttpUtility.HtmlDecode(@Model.Blog_Content))
+                </div>
+               
+
+
+
+            </div> <!-- .col-md-8 -->
+
+        </div>
+        <div class="row">
+            <div class="col-lg-8 ftco-animate">
+
+
+
+
+                <div class="pt-5 mt-5">
+                    <h3 class="mb-5">@Model.blog_comments.Count.ToString() Comments</h3>
+
+                    <ul class="comment-list">
+                        @foreach (var comment in Model.blog_comments)
+                        {
+                            <li>
+
+                                <div>
+                                    <h5>Commented by @comment.name</h5>
+                                    <div class="meta">@comment.Date</div>
+                                    <p>@comment.message</p>
+                                </div>
+                            </li>
+                            foreach (var commentreply in comment.replyList)
+                            {
+
+                                <li class="comment">
+
+                                    <ul class="children">
+                                        <li class="comment">
+                                            <div>
+                                                <h5>Commented by @commentreply.name</h5>
+                                                <div class="meta">@commentreply.Date</div>
+                                                <p>@commentreply.message</p>
+                                            </div>
+
+
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            }
+                        }
+
+                    </ul>
+                    <!-- END comment-list -->
+
+                    <div class="comment-form-wrap pt-5">
+                        <h3 class="mb-5">Leave a comment</h3>
+                       
+                            <div class="p-5 bg-light">
+                                <div class="form-group">
+                                    <label for="name">Name *</label>
+                                    <input type="text" class="form-control" id="name">
+                                    <label class="errormessage" id="username"></label>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" class="form-control" id="email">
+                                    <label class="errormessage" id="useremail"></label>
+
+                                 
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                                    <label class="errormessage" id="usermessage"></label>
+
+                                </div>
+                                <div class="form-group">
+                                    <input type="button" onclick="SaveComments()" value="Post Comment" class="btn py-3 px-4 btn-primary">
+                                </div>
+
+                            </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <input type="hidden" value="@Model.blog_Id.ToString()" id="blogID"/>
+</section> <!-- .section -->
+
+
+<section class="ftco-section ftco-no-pt ftco-no-pb">
+    <div class="container">
+        <div class="row d-flex justify-content-end">
+            <div class="col-md-8 py-4 px-md-4 bg-primary">
+                <div class="row">
+                    <div class="col-md-6 ftco-animate d-flex align-items-center">
+                        <h2 class="mb-0" style="color:white; font-size: 24px;">Subcribe to our Newsletter</h2>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center">
+                        <form action="#" class="subscribe-form">
+                            <div class="form-group d-flex">
+                                <input type="text" class="form-control" placeholder="Enter email address">
+                                <input type="submit" value="Subscribe" class="submit px-3">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    @*Save Popup  *@
+    <script type="text/javascript">
+      function ScrollWindow() {
+        $("html, body").animate({ scrollTop: 650 }, 600);
+        }
+
+        $(function () {
+        ScrollWindow();
+    });
+
+
+        var SaveComments = function () {
+
+            var checkemail = "0";
+            var checkname = "0";
+            var checkmessage = "0";
+
+            var blogId = $("#blogID").val();
+            var Message = $("#message").val();
+            var Name = $("#name").val();
+            var Email = $("#email").val();
+            if (Name === null || Name === "") {
+                $("#name").addClass("redboarder");
+                $('#username').text("name is required");
+            } else {
+                 $("#name").removeClass("redboarder");
+                $('#username').text("");
+                checkname = "1";
+            }
+            if (Email === null || Email === "") {
+                $("#email").addClass("redboarder");
+                $('#useremail').text("email is required");
+
+            } else {
+                 $("#email").removeClass("redboarder");
+                $('#useremail').text("");
+             checkemail = "1";
+           }
+
+            if (Email != null || Email != "") {
+                if (!validateEmail(Email)) {
+                    $("#email").addClass("redboarder");
+                    $('#useremail').text("invalid email address");
+                }
+            }
+             else {
+                    $("#email").removeClass("redboarder");
+                $('#useremail').text("");
+                checkemail = "1";
+           
+            }
+
+            if (Message === null || Message === "") {
+                $("#message").addClass("redboarder");
+                $('#usermessage').text("comment is required");
+
+            }
+             else {
+              $("#message").removeClass("redboarder");
+                $('#usermessage').text("");
+                checkmessage = "1";
+             }
+
+            if (checkemail === "1" && checkname === "1" && checkmessage === "1")
+            {
+                $.ajax({
+                    dataType: "text",
+                    type: "POST",
+
+                    url: "/blog/Comments_Save",
+                    data: { BlogId: blogId, Message: Message, Name: Name, Email: Email },
+                    success: function (result) {
+                        if (result === "1") {
+                           
+                            //$("#commentmodel").modal('hide');
+                            location.reload();
+                        }
+                    }
+
+                });
+            }
+
+            //else {
+            //    $("#name").removeClass("redboarder");
+            //    $('#username').text("");
+            //    $("#email").removeClass("redboarder");
+            //    $('#useremail').text("");
+            //    $("#message").removeClass("redboarder");
+            //    $('#usermessage').text("");
+            //    $.ajax({
+            //        dataType: "text",
+            //        type: "POST",
+
+            //        url: "/blog/Save_Comments",
+            //        data: { CommentId: commentId, BlogId: blogId, Message: Message },
+            //        success: function (result) {
+            //            if (result === "1") {
+
+            //                $("#commentmodel").modal('hide');
+            //                location.reload();
+            //            }
+            //        }
+
+            //    });
+            //}
+
+        }
+
+
+ function validateEmail(email) {
+  var re = /^(([^<>()[\]\\.,;:\s@@\"]+(\.[^<>()[\]\\.,;:\s@@\"]+)*)|(\".+\"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
+    </script>
+
+}

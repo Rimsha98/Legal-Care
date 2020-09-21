@@ -1,0 +1,138 @@
+﻿@using SeedaniLegalCare.Models;
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head lang="en-us">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" href="~/Content/css/open-iconic-bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/admin_layout.css" />
+    <link rel="stylesheet" id="bootstrap-css" href="~/Content/bootstrap330.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/admin-theme-modules.css" />
+
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/e1303a18ed.js" crossorigin="anonymous"></script>
+    <script src="~/Scripts/bootstrap330.min.js"></script>
+    <script src="~/Scripts/jquery1111.min.js"></script>
+    <script src="~/Scripts/jquery191.min.js"></script>
+
+    <title>@ViewBag.Title - Legalcare</title>
+    @RenderSection("register", false)
+    @RenderSection("HeaderStyling", false)
+    @RenderSection("scripts", false)
+</head>
+
+<body>
+    <div class="page-wrapper toggled">
+        <a id="show-sidebar" class="btn btn-sm btn-dark" href="#"><i class="fas fa-bars"></i></a>
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <div class="sidebar-brand">
+                    <a href="#">LEGALCARE<span class="sub-text">A LAW FIRM AGENCY</span></a>
+                    <div id="close-sidebar"><i class="fas fa-bars"></i></div>
+                </div>
+
+                <div class="sidebar-menu">
+                    <ul>
+                        <li class="@(ViewBag.LinkText == "approve_users" ? "active-link" : "")">
+                            <a href="@Url.Action("approve_clients","accounts")">
+                                <i class="fas fa-user"></i><span>Register Accounts</span>
+                            </a>
+                        </li>
+                        <li class="@(ViewBag.LinkText == "articles" ? "active-link" : "")">
+                            <a href="@Url.Action("all_articles","articles")">
+                                <i class="fas fa-align-left"></i><span>Articles</span>
+                            </a>
+                        </li>
+                        <li class="@(ViewBag.LinkText == "blog" ? "active-link" : "")">
+                            <a href="@Url.Action("all_posts","blog")">
+                                <i class="fas fa-pencil-alt"></i><span>Blog</span>
+                            </a>
+                        </li>
+                        <li class="@(ViewBag.LinkText == "newsletter" ? "active-link" : "")">
+                            <a href="@Url.Action("list","newsletter")">
+                                <i class="fas fa-envelope"></i><span>Newsletter</span>
+                            </a>
+                        </li>
+                        <li class="@(ViewBag.LinkText == "consultation" ? "active-link" : "")">
+                            <a href="@Url.Action("all_messages","consultation")">
+                                <i class="fas fa-comments"></i><span>Consultation</span>
+                            </a>
+                        </li>
+                        <li class="@(ViewBag.LinkText == "contact" ? "active-link" : "")">
+                            <a href="@Url.Action("queries","contact")">
+                                <i class="fas fa-phone-alt"></i><span>Contact</span>
+                            </a>
+                        </li>
+                        <li class="@(ViewBag.LinkText == "webinfo" ? "active-link" : "")">
+                            <a href="@Url.Action("website_settings","services")">
+                                <i class="fas fa-globe"></i><span>Website Info</span>
+                            </a>
+                        </li>
+                        <li class="@(ViewBag.LinkText == "feedback" ? "active-link" : "")">
+                            <a href="@Url.Action("all_attorneys","feedback")">
+                                <i class="fas fa-comment-dots"></i><span>Feedback</span>
+                            </a>
+                        </li>
+                        <li class="@(ViewBag.LinkText == "manage_users" ? "active-link" : "")">
+                            <a href="@Url.Action("client_accounts","accounts")">
+                                <i class="fas fa-users-cog"></i><span>Manage Users</span>
+                            </a>
+                        </li>
+                        <li class="@(ViewBag.LinkText == "admins" ? "active-link" : "")">
+                            <a href="@Url.Action("all_admins","admins")">
+                                <i class="fas fa-cog"></i><span>Manage Admins</span>
+                            </a>
+                        </li>
+                        <li class="@(ViewBag.LinkText == "reports" ? "active-link" : "")">
+                            <a href="@Url.Action("reported_accounts","accounts")">
+                                <i class="fas fa-exclamation-circle"></i><span>Reports</span>
+                            </a>
+                        </li>
+                        <li><a href="@Url.Action("Logout","accounts")"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main class="page-content">
+            <div class="container-fluid">
+
+                <div class="content">
+                    @RenderBody()
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        jQuery(function ($) {
+            $("#close-sidebar").click(function () {
+                $(".page-wrapper").removeClass("toggled");
+            });
+            $("#show-sidebar").click(function () {
+                $(".page-wrapper").addClass("toggled");
+            });
+        });
+    </script>
+
+    <script src="~/Scripts/js/jquery.min.js"></script>
+    <script src="~/Scripts/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/Scripts/js/popper.min.js"></script>
+    <script src="~/Scripts/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/js/jquery.easing.1.3.js"></script>
+    <script src="~/Scripts/js/jquery.waypoints.min.js"></script>
+    <script src="~/Scripts/js/jquery.stellar.min.js"></script>
+    <script src="~/Scripts/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Scripts/js/aos.js"></script>
+    <script src="~/Scripts/js/scrollax.min.js"></script>
+    <script src="~/Scripts/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewBag.Title = "Admin_ViewEditArticle";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+@section HeaderStyling{
+    <script src="https://kit.fontawesome.com/e1303a18ed.js" crossorigin="anonymous"></script>
+
+    <style>
+
+        .rowboarder {
+            border: 1px solid lightgrey;
+        }
+
+        .rowElemets label, input {
+            border: 1px solid transparent;
+            font-size: 14px;
+            text-align: left;
+            height: 40px
+        }
+
+        .LableStyling {
+            color: #AFA939;
+            margin-top: 7px;
+            margin-bottom: 1px;
+        }
+
+        .btn_col {
+            color: gray;
+        }
+
+        .col-2 label {
+            vertical-align: middle;
+        }
+
+        .left-label{
+            color: #AFA939;
+            float: left;
+        }
+
+        .compose-textbox:focus{
+            outline: none;
+            background-color: #FBFBFB;
+        }
+
+        textarea{
+            
+            border: none;
+            min-height: 330px;
+        }
+    </style>
+}
+
+
+<section>
+    <div class="row pb-4 top-section">
+        <div class="col-md-4 mt-2 mb-2">
+            <div class="search-bar">
+                <input type="text" placeholder="Search..." class="float-left" />
+                <button type="button" class="float-left search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+        <div class="col-md-8 mt-2 mb-2 center">
+            <button class="buttons btn1 mr-3">Approved Articles</button>
+            <button class="buttons">Pending Articles</button>
+        </div>
+    </div>
+    <div class="sub-content mb-5">
+        <div class="row no-gutters p-0 m-0 border-bottom" style="display: flex; align-items: center;">
+            <div class="col-lg-1 pl-4 pt-2 pr-4 ">
+                <label class="left-label">Author: </label>
+            </div>
+            <div class="col-lg-11" style="text-align: left;">
+                <input type="text" value="Ayesha Khalid" class="w-100 pl-4 pr-4 compose-textbox" />
+            </div>
+        </div>
+
+        <div class="row no-gutters p-0 m-0 border-bottom" style="display: flex; align-items: center;">
+            <div class="col-lg-1 pl-4 pt-2 pr-4">
+                <label class="left-label">Date:</label>
+            </div>
+            <div class="col-lg-11" style="text-align: left;">
+                <input type="text" value="28/10/19" class="w-100 pl-4 pr-4 compose-textbox" />
+            </div>
+        </div>
+
+        <div class="row no-gutters p-0 m-0 border-bottom" style="display: flex; align-items: center;">
+            <div class="col-lg-1 pl-4 pt-2 pr-4">
+                <label class="left-label">Title:</label>
+            </div>
+            <div class="col-lg-11" style="text-align: left;">
+                <input type="text" value="This is a small article title just to demonstrate" class="w-100 pl-4 pr-4 compose-textbox" />
+            </div>
+        </div>
+
+        <div class="row no-gutters p-0 m-0" style="display: flex; align-items: center;">
+            <div class="col-lg-12 " style="text-align: left;">
+                <textarea class="w-100 p-4 compose-textbox border-bottom">
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+
+It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+</textarea>
+            </div>
+
+
+        </div>
+
+        <div class="row no-gutters p-0 m-0 border-bottom" style="display: flex; align-items: center;">
+            <div class="col-lg-6 pl-4 pr-4 btn-toolbar">
+                <div class="btn-group">
+                    <button class="btn pl-0"><i class="fa fa-bold btn_col"></i></button>
+                    <button class="btn"><i class="fa fa-italic btn_col"></i></button>
+                    <button class="btn"><i class="fa fa-underline btn_col"></i></button>
+                    <button class="btn"><i class="fa fa-link btn_col"></i></button>
+                    <button class="btn"><i class="fa fa-image btn_col"></i></button>
+                </div>
+            </div>
+            <div class="col-lg-6 p-3" style="text-align: right;">
+                <button type="button" onclick="location.href='/articles/all_articles'" class="btn btn-secondary  mr-2 cancel-button" style="background-color:black;">Cancel</button>
+                <button type="button" class="btn btn-primary proceed-button">Save Changes</button>
+            </div>
+        </div>
+
+        <!-- <div class="row  rowElemets ">
+
+        <div class="col-12 rowboarder ">
+            <label class="LableStyling float-left mr-1 ml-2" style="text-align:center;">Author:</label>
+            <input type="text" value="Ayesha Khalid" class="float-left w-75" />
+        </div>
+    </div>
+    <div class="row  rowElemets ">
+
+        <div class="col-12 rowboarder ">
+            <label class="LableStyling float-left mr-1 ml-2">Date Posted:</label>
+            <input type="text" value="02/03/2019" class="float-left w-75" />
+        </div>
+    </div>
+    <div class="row  rowElemets ">
+
+        <div class="col-12 rowboarder ">
+            <label class="LableStyling float-left mr-1 ml-2">Title:</label>
+            <input type="text" value="This is small article title just to demostrate" class="float-left w-75" />
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-12 rowboarder ">
+            <textarea class="h-100 w-100 ml-2" cols="35" rows="12" style="border:1px solid transparent">Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality, though, the unity and coherence of ideas among sentences is what constitutes a paragraph. A paragraph is defined as “a group of sentences or a single sentence that forms a unit” (Lunsford and Connors 116). Length and appearance do not determine whether a section in a paper is a paragraph. For instance, in some styles of writing, particularly journalistic styles, a paragraph can be just one sentence long. Ultimately, a paragraph is a sentence or group of sentences that support one main idea. In this handout, we will refer to this as the “controlling idea,” because it controls what happens in the rest of the paragraph.</textarea>
+        </div>
+    </div>
+    <div class="row  rowElemets pl-2 mt-3 mb-3">
+        <div class="col-md-6 btn-toolbar">
+            <div class="btn-group">
+                <button class="btn"><i class="fa fa-bold btn_col"></i></button>
+                <button class="btn"><i class="fa fa-italic btn_col"></i></button>
+                <button class="btn"><i class="fa fa-underline btn_col"></i></button>
+                <button class="btn"><i class="fa fa-link btn_col"></i></button>
+                <button class="btn"><i class="fa fa-image btn_col"></i></button>
+            </div>
+        </div>
+        <div class="col-md-6 ">
+            <button type="button" class="btn btn-primary float-right">Save Changes</button>
+
+            <button type="button" class="btn btn-secondary float-right mr-2" style="background-color:black;">Cancel</button>
+
+        </div>
+    </div> -->
+
+
+    </div>
+</section>

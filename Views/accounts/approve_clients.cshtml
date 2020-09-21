@@ -1,0 +1,321 @@
+﻿@model IEnumerable<SeedaniLegalCare.Models.Client>
+@{
+    ViewBag.Title = "Register Clients";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+@section  register{
+
+    <link href="~/Content/bootstrap330.min.css" rel="stylesheet" id="bootstrap-css" />
+    <script src="~/Scripts/bootstrap330.min.js"></script>
+    <script src="~/Scripts/jquery1111.min.js"></script>
+    <script src="~/Scripts/jquery191.min.js"></script>
+
+
+    <style>
+        .modal {
+            z-index: 9999;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .modal-dialog {
+            z-index: 99999;
+        }
+
+        #Client-Data thead {
+            background-color: #222831;
+            font-size: 12px;
+            color: #fff;
+        }
+
+            #Client-Data thead th {
+                text-align: center;
+            }
+
+        .user-image {
+            height: 35px;
+            width: 35px;
+            object-fit: cover;
+        }
+
+        #Client-Data tbody tr td {
+            vertical-align: middle;
+            font-size: 12px;
+        }
+
+        .approve-icon, .delete-icon, .delete-icon2 {
+            background-color: #222831;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            border-radius: 50%;
+            width: 27px;
+            height: 27px;
+        }
+
+
+
+        .delete-icon, .delete-icon2 {
+            background-color: #E82F2F;
+            font-size: 15px;
+        }
+
+        .delete-icon2 {
+            width: 22px;
+            height: 22px;
+            font-size: 12px;
+        }
+
+            .delete-icon:focus, .delete-icon2:focus, .approve-icon:focus {
+                outline: none;
+            }
+
+
+        .approve-icon:hover {
+            background-color: #505050;
+        }
+
+        .delete-icon:hover, .delete-icon2:hover {
+            background-color: #FF7E7E;
+        }
+
+        .btnn {
+            width: 3%;
+        }
+
+        #exampleModalCenter, #approverequest {
+            z-index: 9999;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .modal-dialog {
+            z-index: 99999;
+        }
+
+        .pagination {
+            margin-right: 15px;
+        }
+
+            .pagination > li > a {
+                color: #222831 !important;
+            }
+
+            .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover,
+            .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+                background-color: #AFA939 !important;
+                border-color: #AFA939 !important;
+                color: #fff !important;
+            }
+
+        #delete {
+            background-color: #AFA939 !important;
+            border-color: #AFA939 !important;
+        }
+
+            #delete:hover {
+                background-color: #ded871 !important;
+                border-color: #ded871 !important;
+            }
+
+        #close:hover {
+            color: #fff !important;
+        }
+    </style>
+
+}
+
+<section>
+    <!-- top section -->
+    <div class="row pb-4 top-section">
+        <div class="col-md-4 mt-2 mb-2">
+            <div class="search-bar">
+                <input type="text" placeholder="Search client..." class="float-left" />
+                <button type="button" class="float-left search-btn" title="search"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+        <div class="col-md-8 mt-2 mb-2 center">
+            <button class="buttons btn1 mr-3">Client Accounts</button>
+            <button class="buttons" onclick="display_view()">Attorney Accounts</button>
+        </div>
+    </div>
+
+    <!-- content -->
+    <div class="sub-content mb-5">
+        <div class="container-fluid p-0 m-0">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table id="Client-Data" class="table table-bordred table-striped users-table">
+                            <thead>
+                            <th>Image</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Gender</th>
+                            <th>City</th>
+                            <th>Country</th>
+                            <th></th>
+                            <th></th>
+                            </thead>
+
+                            <tbody>
+
+                                @foreach (var client in Model)
+                                {
+                                    <tr id="row_@client.Client_ID">
+                                        <td><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                        <td>@client.Client_Name</td>
+                                        <td>@client.Client_Email</td>
+                                        <td>@client.Client_Number</td>
+                                        <td>@client.Client_Gender</td>
+                                        <td>@client.Client_City</td>
+                                        <td>@client.Client_Country</td>
+                                        <td class="btn-cell"><button class="approve-request" title="Approve" onclick="ConfirmApprove(@client.Client_ID)"><i class="fas fa-check"></i></button></td>
+
+                                        <td class="btn-cell"><button class="delete-icon" onclick="ConfirmDelete(@client.Client_ID)" title="Delete"><i class="fas fa-times"></i></button></td>
+
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+
+                        <div class="clearfix"></div>
+                        <ul class="pagination pull-right">
+                            <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="hiddenid" />
+    <input type="hidden" id="approveId" />
+</section>
+
+<!-- modals -->
+<div class="modal" id="DeleteRequest" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title float-left font-weight-bold">Delete Request</h5>
+                <button class="close-modal-sm float-right" title="Close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body mt-3 center">
+                <p>Are you sure you want to delete this request?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary cancel-button" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary proceed-button" onclick="DeleteClient()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="ApproveRequest" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title float-left font-weight-bold">Approve Request</h5>
+                <button class="close-modal-sm float-right" title="Close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body mt-3 center">
+                <p>Are you sure you want to approve this request?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary cancel-button" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary proceed-button" onclick="ApproveClient()">Approve</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- scripts -->
+<script>
+    function display_view() {
+        window.location.href = "/accounts/approve_attorneys";
+    }
+</script>
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    @* Popup Ban *@
+    <script type="text/javascript">
+        var ConfirmApprove = function (EmployeeId) {
+
+            $("#approveId").val(EmployeeId);
+            $("#ApproveRequest").modal('show');
+
+        }
+
+        var ApproveClient = function () {
+
+
+
+            var empId = $("#approveId").val();
+
+            $.ajax({
+
+                type: "POST",
+                url: "/accounts/save_client",
+                data: { EmployeeId: empId },
+                success: function (result) {
+
+                    $("#ApproveRequest").modal("hide");
+                    $("#row_" + empId).hide();
+
+                }
+
+            })
+
+        }
+    </script>
+    @* Popup Delete *@
+    <script type="text/javascript">
+        var ConfirmDelete = function (EmployeeId) {
+
+            $("#hiddenid").val(EmployeeId);
+            $("#DeleteRequest").modal('show');
+
+        }
+
+        var DeleteClient = function () {
+
+
+
+            var empId = $("#hiddenid").val();
+
+            $.ajax({
+
+                type: "POST",
+                url: "/accounts/delete_client",
+                data: { EmployeeId: empId },
+                success: function (result) {
+
+                    $("#DeleteRequest").modal("hide");
+                    $("#row_" + empId).remove();
+
+                }
+
+            })
+
+        }
+    </script>
+}

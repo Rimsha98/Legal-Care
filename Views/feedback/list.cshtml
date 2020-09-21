@@ -1,0 +1,255 @@
+﻿@{
+    ViewBag.Title = "Client Feedback";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IPagedList<SeedaniLegalCare.Models.Feedback>
+@using PagedList;
+@using PagedList.Mvc;
+
+@section view{
+    <script src="~/Scripts/bootstrap330.min.js"></script>
+    <script src="~/Scripts/jquery1111.min.js"></script>
+    <script src="~/Scripts/jquery191.min.js"></script>
+    <script src="~/Scripts/progressbar.js"></script>
+    <script src="~/Scripts/progressbar.min.js"></script>
+    <link href="~/Content/feedback.css" rel="stylesheet" />
+}
+
+<!-- Header -->
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate pb-5 text-center">
+                <h1 class="mb-3 bread">Client Feedback</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="@Url.Action("index","home")">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Client Feedback</span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+<div class="sub-content" style="width: 93%; margin: 0 auto;">
+    <div class="container-fluid p-0 mb-5">
+        <div class="row">
+            <!-- Attorney Detail -->
+            <div class="col-lg-8">
+                <div class="attorney pr-4 pb-4 pt-4">
+                    <img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" />
+                    <label class="name pl-3">
+                        @if (Session["AttorneyName"] == null)
+                        {
+                            Session["AttorneyName"] = "Attorney Name Here";
+                            Session["AttorneyRole"] = "Attorney Role Here";
+                        }
+                        @Session["AttorneyName"].ToString()<span class="type">@Session["AttorneyRole"].ToString()</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="col-lg-4 pb-4 pt-lg-4">
+                @using (Html.BeginForm("list", "feedback", FormMethod.Get))
+                {
+                    <div class="search-bar">
+                        <input type="text" name="search" id="search" placeholder="enter text to search ..." class="float-left" />
+                        <button type="submit" value="search" class="float-left search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                }
+            </div>
+        </div>
+
+        @{
+            var temp = ViewData["percentages"] as float[];
+            var feedbackcount = Model.TotalItemCount;
+        }
+
+        <!-- Feedback Percentages -->
+        @if (ViewBag.ShowDetails)
+        {
+            <div class="row no-gutters border" style="background-color: #F8F9FA" id="perc">
+                <div class="p-5" style="margin: 0 auto; text-align: center">
+                    <div class="float-left">
+                        <div id="rating5" class="rating-circle"></div>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="type mb-4">5 star ratings</span>
+                    </div>
+
+                    <div class="float-left">
+                        <div id="rating4" class="rating-circle"></div>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot-empty"></span>
+                        <span class="type mb-4">4 star ratings</span>
+                    </div>
+
+                    <div class="float-left">
+                        <div id="rating3" class="rating-circle"></div>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot-empty"></span>
+                        <span class="dot-empty"></span>
+                        <span class="type mb-4">3 star ratings</span>
+                    </div>
+
+                    <div class="float-left">
+                        <div id="rating2" class="rating-circle"></div>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot-empty"></span>
+                        <span class="dot-empty"></span>
+                        <span class="dot-empty"></span>
+                        <span class="type mb-4">2 star ratings</span>
+                    </div>
+
+                    <div class="float-left">
+                        <div id="rating1" class="rating-circle"></div>
+                        <span class="dot"></span>
+                        <span class="dot-empty"></span>
+                        <span class="dot-empty"></span>
+                        <span class="dot-empty"></span>
+                        <span class="dot-empty"></span>
+                        <span class="type mb-4">1 star ratings</span>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row no-gutters border" style="background-color: #F8F9FA" id="perc">
+                <div class="pt-2 pl-4 pr-4 pb-2 w-100">
+                    @feedbackcount search results found
+                </div>
+            </div>
+        }
+
+        <!-- Feedback List -->
+        <div class="row no-gutters mb-5 border">
+            <div class="col-md-12 m-0 p-0">
+                @if (ViewBag.ShowDetails)
+                {
+                    <h1 class="head-small mt-4 ml-4">@temp[5] Feedback given by clients</h1>
+                }
+
+                <div class="table table-striped mb-0">
+                    <table class="w-100">
+                        @foreach (var feedback in Model)
+                        {
+                            <tr>
+                                <td colspan="2">
+                                    <div class="client" style="overflow: hidden;">
+                                        <div class="float-left pl-4 pr-4 pt-4">
+                                            <img src="~/images/person_3.jpg" class="user-image rounded rounded-circle" />
+                                            <label class="name pl-3">@feedback.Client_Name<span class="email">@feedback.Client_Email</span></label>
+                                        </div>
+                                        <div class="float-right pr-4 pt-4 pb-4">
+                                            <label style="color: black">Rating: </label>
+                                            @if (feedback.Client_Rating > 0)
+                                            {
+                                                for (int i = 0; i < feedback.Client_Rating; i++)
+                                                {
+                                                    <span class="dot"></span>
+                                                }
+                                                int count = 5 - feedback.Client_Rating;
+                                                for (int i = 0; i < count; i++)
+                                                {
+                                                    <span class="dot-empty"></span>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="pl-4 pr-4 pb-4">
+                                        <p style="text-align: left; font-size: 15px; color: black;">
+                                            @feedback.Client_Feedback
+                                        </p>
+                                        <label class="date">Received: @feedback.Date</label>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div>
+            @Html.PagedListPager(Model, page => Url.Action("list", new{
+            page, search = Request.QueryString["search"],}), 
+            new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded })
+        </div>
+    </div>
+</div>
+
+<!-- Display Percentages Script -->
+<script>
+    $(function () {
+        ScrollWindow();
+    });
+
+      function ScrollWindow() {
+        $("html, body").animate({ scrollTop: 600 }, 0);
+    }
+
+    var rating5, rating4, rating3, rating2, rating1;
+    var count = 0;
+
+        $('.rating-circle').each(function () {
+            var element_ID = $(this).attr('id');
+            var element = document.getElementById(element_ID);
+            count++;
+
+            var bar = new ProgressBar.Circle(element, {
+                color: '#AFA939',
+                strokeWidth: 5,
+                trailWidth: 5,
+                easing: 'easeInOut',
+                duration: 1400,
+                text: {
+                    autoStyleContainer: false
+                },
+                from: { color: '#AFA939', width: 5 },
+                to: { color: '#AFA939', width: 5 },
+                step: function (state, circle) {
+                    circle.path.setAttribute('stroke', state.color);
+                    circle.path.setAttribute('stroke-width', state.width);
+
+                    var value = Math.round(circle.value() * 100);
+                    if (value === 0) {
+                        circle.setText('0%');
+                    } else {
+                        circle.setText(value + '%');
+                    }
+                }
+            });
+
+            bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+            bar.text.style.fontSize = '1.5rem';
+            bar.text.style.color = '#222831';
+
+            if (count === 1)
+                rating5 = bar;
+            if (count === 2)
+                rating4 = bar;
+            if (count == 3)
+                rating3 = bar;
+            if (count == 4)
+                rating2 = bar;
+            if (count == 5)
+                rating1 = bar;
+        });
+
+        rating5.animate(@temp[4]);
+        rating4.animate(@temp[3]);
+        rating3.animate(@temp[2]);
+        rating2.animate(@temp[1]);
+        rating1.animate(@temp[0]);
+</script>

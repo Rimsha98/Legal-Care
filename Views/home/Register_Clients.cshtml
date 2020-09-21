@@ -1,0 +1,355 @@
+﻿
+@{
+    ViewBag.Title = "Register_Clients";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+@section  register{
+
+    <link href="~/Content/bootstrap330.min.css" rel="stylesheet" id="bootstrap-css" />
+    <script src="~/Scripts/bootstrap330.min.js"></script>
+    <script src="~/Scripts/jquery1111.min.js"></script>
+    <script src="~/Scripts/jquery191.min.js"></script>
+
+
+    <style>
+        #Client-Data thead {
+            background-color: #222831;
+            font-size: 12px;
+            color: #fff;
+        }
+
+            #Client-Data thead th {
+                text-align: center;
+            }
+
+        .user-image {
+            height: 35px;
+            width: 35px;
+            object-fit: cover;
+        }
+
+        #Client-Data tbody tr td {
+            vertical-align: middle;
+            font-size: 12px;
+        }
+
+        .approve-icon, .delete-icon, .delete-icon2 {
+            background-color: #3AB123;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            border-radius: 50%;
+            width: 27px;
+            height: 27px;
+        }
+
+
+
+        .delete-icon, .delete-icon2 {
+            background-color: #E82F2F;
+            font-size: 15px;
+        }
+
+        .delete-icon2 {
+            width: 22px;
+            height: 22px;
+            font-size: 12px;
+        }
+
+            .delete-icon:focus, .delete-icon2:focus, .approve-icon:focus {
+                outline: none;
+            }
+
+
+        .approve-icon:hover {
+            background-color: #55E139;
+        }
+
+        .delete-icon:hover, .delete-icon2:hover {
+            background-color: #FF7E7E;
+        }
+
+        .btnn {
+            width: 3%;
+        }
+
+        #exampleModalCenter, #approverequest {
+            z-index: 9999;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .modal-dialog {
+            z-index: 99999;
+        }
+
+        .pagination {
+            margin-right: 15px;
+        }
+
+            .pagination > li > a {
+                color: #222831 !important;
+            }
+
+            .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover,
+            .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+                background-color: #AFA939 !important;
+                border-color: #AFA939 !important;
+                color: #fff !important;
+            }
+
+        #delete {
+            background-color: #AFA939 !important;
+            border-color: #AFA939 !important;
+        }
+
+            #delete:hover {
+                background-color: #ded871 !important;
+                border-color: #ded871 !important;
+            }
+
+        #close:hover {
+            color: #fff !important;
+        }
+    </style>
+   
+}
+<section>
+    <div class="row pb-4" style="background-color: #F8F9FA;">
+        <div class="col-md-4 mt-2 mb-2">
+            <div class="search-bar">
+                <input type="text" placeholder="enter text to search ..." class="float-left" />
+                <button type="button" class="float-left search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+        <div class="col-md-8 mt-2 mb-2 center">
+            <button class="buttons btn1 mr-3">Client Accounts</button>
+            <button class="buttons">Attorney Accounts</button>
+        </div>
+    </div>
+
+    <div class="sub-content">
+        <div class="container-fluid p-0 m-0">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table id="Client-Data" class="table table-bordred table-striped">
+                            <thead>
+                            <th>Image</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Gender</th>
+                            <th>City</th>
+                            <th>Country</th>
+                            <th></th>
+                            <th></th>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td>Asma Riaz</td>
+                                    <td>asmamalik96@hotmail.com</td>
+                                    <td>+923311380637</td>
+                                    <td>Female</td>
+                                    <td>Karachi</td>
+                                    <td>Pakistan</td>
+                                    <td class="btnn"><button class="approve-icon" title="Approve" data-toggle="modal" data-target="#approverequest"><i class="fas fa-check"></i></button></td>
+                                    <td class="btnn"><button class="delete-icon" title="Delete" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-times"></i></button></td>
+                                </tr>
+
+                                <tr>
+                                    <td><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td>Asma Riaz</td>
+                                    <td>asmamalik96@hotmail.com</td>
+                                    <td>+923311380637</td>
+                                    <td>Female</td>
+                                    <td>Karachi</td>
+                                    <td>Pakistan</td>
+                                    <td class="btnn"><button class="approve-icon" title="Approve" data-toggle="modal" data-target="#approverequest"><i class="fas fa-check"></i></button></td>
+                                    <td class="btnn"><button class="delete-icon" title="Delete" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-times"></i></button></td>
+                                </tr>
+
+                                <tr>
+                                    <td><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td>Asma Riaz</td>
+                                    <td>asmamalik96@hotmail.com</td>
+                                    <td>+923311380637</td>
+                                    <td>Female</td>
+                                    <td>Karachi</td>
+                                    <td>Pakistan</td>
+                                    <td class="btnn"><button class="approve-icon" title="Approve" data-toggle="modal" data-target="#approverequest"><i class="fas fa-check"></i></button></td>
+                                    <td class="btnn"><button class="delete-icon" title="Delete" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-times"></i></button></td>
+                                </tr>
+
+                                <tr>
+                                    <td><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td>Asma Riaz</td>
+                                    <td>asmamalik96@hotmail.com</td>
+                                    <td>+923311380637</td>
+                                    <td>Female</td>
+                                    <td>Karachi</td>
+                                    <td>Pakistan</td>
+                                    <td class="btnn"><button class="approve-icon" title="Approve" data-toggle="modal" data-target="#approverequest"><i class="fas fa-check"></i></button></td>
+                                    <td class="btnn"><button class="delete-icon" title="Delete" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-times"></i></button></td>
+                                </tr>
+
+                                <tr>
+                                    <td><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td>Asma Riaz</td>
+                                    <td>asmamalik96@hotmail.com</td>
+                                    <td>+923311380637</td>
+                                    <td>Female</td>
+                                    <td>Karachi</td>
+                                    <td>Pakistan</td>
+                                    <td class="btnn"><button class="approve-icon" title="Approve" data-toggle="modal" data-target="#approverequest"><i class="fas fa-check"></i></button></td>
+                                    <td class="btnn"><button class="delete-icon" title="Delete" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-times"></i></button></td>
+                                </tr>
+
+                                <tr>
+                                    <td><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td>Asma Riaz</td>
+                                    <td>asmamalik96@hotmail.com</td>
+                                    <td>+923311380637</td>
+                                    <td>Female</td>
+                                    <td>Karachi</td>
+                                    <td>Pakistan</td>
+                                    <td class="btnn"><button class="approve-icon" title="Approve" data-toggle="modal" data-target="#approverequest"><i class="fas fa-check"></i></button></td>
+                                    <td class="btnn"><button class="delete-icon" title="Delete" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-times"></i></button></td>
+                                </tr>
+
+                                <tr>
+                                    <td><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td>Asma Riaz</td>
+                                    <td>asmamalik96@hotmail.com</td>
+                                    <td>+923311380637</td>
+                                    <td>Female</td>
+                                    <td>Karachi</td>
+                                    <td>Pakistan</td>
+                                    <td class="btnn"><button class="approve-icon" title="Approve" data-toggle="modal" data-target="#approverequest"><i class="fas fa-check"></i></button></td>
+                                    <td class="btnn"><button class="delete-icon" title="Delete" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-times"></i></button></td>
+                                </tr>
+
+                                <tr>
+                                    <td><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td>Asma Riaz</td>
+                                    <td>asmamalik96@hotmail.com</td>
+                                    <td>+923311380637</td>
+                                    <td>Female</td>
+                                    <td>Karachi</td>
+                                    <td>Pakistan</td>
+                                    <td class="btnn"><button class="approve-icon" title="Approve" data-toggle="modal" data-target="#approverequest"><i class="fas fa-check"></i></button></td>
+                                    <td class="btnn"><button class="delete-icon" title="Delete" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-times"></i></button></td>
+                                </tr>
+
+                                <tr>
+                                    <td><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td>Asma Riaz</td>
+                                    <td>asmamalik96@hotmail.com</td>
+                                    <td>+923311380637</td>
+                                    <td>Female</td>
+                                    <td>Karachi</td>
+                                    <td>Pakistan</td>
+                                    <td class="btnn"><button class="approve-icon" title="Approve" data-toggle="modal" data-target="#approverequest"><i class="fas fa-check"></i></button></td>
+                                    <td class="btnn"><button class="delete-icon" title="Delete" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-times"></i></button></td>
+                                </tr>
+
+                                <tr>
+                                    <td><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td>Asma Riaz</td>
+                                    <td>asmamalik96@hotmail.com</td>
+                                    <td>+923311380637</td>
+                                    <td>Female</td>
+                                    <td>Karachi</td>
+                                    <td>Pakistan</td>
+                                    <td class="btnn"><button class="approve-icon" title="Approve" data-toggle="modal" data-target="#approverequest"><i class="fas fa-check"></i></button></td>
+                                    <td class="btnn"><button class="delete-icon" title="Delete" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-times"></i></button></td>
+                                </tr>
+
+                                <tr>
+                                    <td><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td>Asma Riaz</td>
+                                    <td>asmamalik96@hotmail.com</td>
+                                    <td>+923311380637</td>
+                                    <td>Female</td>
+                                    <td>Karachi</td>
+                                    <td>Pakistan</td>
+                                    <td class="btnn"><button class="approve-icon" title="Approve" data-toggle="modal" data-target="#approverequest"><i class="fas fa-check"></i></button></td>
+                                    <td class="btnn"><button class="delete-icon" title="Delete" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-times"></i></button></td>
+                                </tr>
+
+                                <tr>
+                                    <td><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                    <td>Asma Riaz</td>
+                                    <td>asmamalik96@hotmail.com</td>
+                                    <td>+923311380637</td>
+                                    <td>Female</td>
+                                    <td>Karachi</td>
+                                    <td>Pakistan</td>
+                                    <td class="btnn"><button class="approve-icon" title="Approve" data-toggle="modal" data-target="#approverequest"><i class="fas fa-check"></i></button></td>
+                                    <td class="btnn"><button class="delete-icon" title="Delete" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-times"></i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="clearfix"></div>
+                        <ul class="pagination pull-right">
+                            <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                        </ul>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title float-left text-danger font-weight-bold" id="exampleModalLongTitle">Delete Request</h5>
+                        <button class="delete-icon2 float-right" title="Close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body mt-3">
+                        <p>Are you sure you want to delete this request?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" id="delete">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+<div class="modal fade" id="approverequest" tabindex="-1" role="dialog" aria-labelledby="approverequestTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title float-left font-weight-bold">Approve Request</h5>
+                <button class="delete-icon2 float-right" title="Close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body mt-3" style="text-align: center">
+                <p>Are you sure you want to approve this request?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="approve">Approve</button>
+            </div>
+        </div>
+    </div>
+</div>

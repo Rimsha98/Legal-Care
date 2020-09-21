@@ -1,0 +1,169 @@
+﻿
+@{
+    ViewBag.Title = "Respond to Query";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+@model IEnumerable<SeedaniLegalCare.Models.Contact>
+
+@section HeaderStyling{
+    <script src="https://kit.fontawesome.com/e1303a18ed.js" crossorigin="anonymous"></script>
+
+    <style>
+
+        .rowboarder {
+            border: 1px solid lightgrey;
+        }
+
+        .rowElemets label, input {
+            border: 1px solid transparent;
+            font-size: 14px;
+            text-align: left;
+            height: 40px
+        }
+
+        .LableStyling {
+            color: #AFA939;
+            margin-top: 7px;
+            margin-bottom: 1px;
+        }
+
+        .btn_col {
+            color: gray;
+        }
+
+        .left-label {
+            color: #AFA939;
+            float: left;
+        }
+
+        .compose-textbox:focus {
+            outline: none;
+            background-color: #FBFBFB;
+        }
+
+        textarea {
+            border: none;
+            min-height: 330px;
+        }
+
+        input.input-validation-error {
+            border: 0.083em solid red;
+        }
+
+        select.input-validation-error {
+            border: 0.083em solid red;
+        }
+
+    </style>
+}
+
+@{ var Emails = ViewData["Emails"] as string[]; }
+
+<section>
+    <div class="row pb-4 top-section">
+        <div class="col-md-4 mt-2 mb-2">
+            <div class="search-bar">
+                <input type="text" placeholder="Search..." class="float-left" />
+                <button type="button" class="float-left search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+
+    </div>
+    @using (Html.BeginForm("sendemail","contact",FormMethod.Post))
+    {
+        <div class="sub-content mb-5">
+            <div class="row no-gutters p-0 m-0 border-bottom" style="display: flex; align-items: center;">
+                <div class="col-lg-1 pl-4 pt-2 pr-4 ">
+                    <label class="left-label">From:</label>
+                </div>
+                <div class="col-lg-11" style="text-align: left;">
+                    <input type="text" readonly="readonly" value="@Emails[0]" title="you cannot edit this field" class="w-100 pl-4 pr-4 compose-textbox" />
+                </div>
+            </div>
+
+            <div class="row no-gutters p-0 m-0 border-bottom" style="display: flex; align-items: center;">
+                <div class="col-lg-1 pl-4 pt-2 pr-4">
+                    <label class="left-label">To:</label>
+                </div>
+                <div class="col-lg-11" style="text-align: left;">
+                    <input type="text" name="email" readonly="readonly" value="@Emails[1]" title="you cannot edit this field" class="w-100 pl-4 pr-4 compose-textbox" />
+                </div>
+            </div>
+
+            <div class="row no-gutters p-0 m-0 border-bottom" id="subject-container" style="display: flex; align-items: center;">
+                <div class="col-lg-1 pl-4 pt-2 pr-4">
+                    <label class="left-label">Subject:</label>
+                </div>
+                <div class="col-lg-11" style="text-align: left;">
+                    <input type="text" name="subject" onfocus="TBFocus(2)" id="subject" placeholder="enter email subject here" class="w-100 pl-4 pr-4 compose-textbox" />
+                </div>
+            </div>
+
+            <div class="row no-gutters p-0 m-0" style="display: flex; align-items: center;" id="email-container">
+                <div class="col-lg-12 " style="text-align: left;">
+                    <textarea id="email" onfocus="TBFocus(1)" name="message" class="w-100 p-4 compose-textbox border-bottom" placeholder="enter email content here "></textarea>
+                </div>
+
+
+            </div>
+
+            <div class="row no-gutters p-0 m-0 border-bottom" style="display: flex; align-items: center;">
+                <div class="col-lg-6 pl-4 pr-4 btn-toolbar">
+                    <!-- <div class="btn-group">
+                        <button class="btn pl-0"><i class="fa fa-bold btn_col"></i></button>
+                        <button class="btn"><i class="fa fa-italic btn_col"></i></button>
+                        <button class="btn"><i class="fa fa-underline btn_col"></i></button>
+                        <button class="btn"><i class="fa fa-link btn_col"></i></button>
+                        <button class="btn"><i class="fa fa-image btn_col"></i></button>
+                    </div>-->
+                </div>
+                <div class="col-lg-6 p-4" style="text-align: right;">
+                    <button type="button" onclick="location.href='/contact/queries'" class="btn btn-secondary  mr-2 cancel-button" style="background-color:black;">Cancel</button>
+                    <button type="submit" id="submit" class="btn btn-primary proceed-button">Send Response</button>
+                </div>
+            </div>
+
+        </div>
+    }
+</section>
+
+<script>
+
+    function TBFocus(temp) {
+        if (temp == 1) {
+            document.getElementById("email").style.backgroundColor = "#fff";
+            document.getElementById("email").placeholder = "enter email content here";
+        }
+         if (temp == 2) {
+             document.getElementById("subject").style.backgroundColor = "#fff";
+             document.getElementById("subject").placeholder = "enter email subject here";
+            }
+        }
+
+    $(document).ready(function () {
+  $('#submit').click(function (e) {
+            var isValid = true;
+            $('#email,#subject').each(function () {
+                if ($.trim($(this).val()) == '') {
+                    isValid = false;
+                    $(this).attr('placeholder','must fill this field');
+                    $(this).css({
+                        "background": "#FFCECE"
+                    });
+                }
+                else {
+                    $(this).css({
+                      "background": ""
+                    });
+
+                    $('#submit').submit();
+                }
+            });
+            if (isValid == false)
+                e.preventDefault();
+
+        });
+});
+
+</script>

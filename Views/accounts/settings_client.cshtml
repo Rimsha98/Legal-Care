@@ -1,0 +1,336 @@
+﻿@model SeedaniLegalCare.Models.Client
+@{
+    ViewBag.Title = "settings_client";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (TempData["save"] != null)
+{
+    @Html.Raw(TempData["save"])
+}
+@section Styles{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/e1303a18ed.js" crossorigin="anonymous"></script>
+
+    <style>
+        .form-group {
+            width: 75%;
+        }
+    </style>
+}
+@section ValidateFields{
+
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+    @*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
+    @*<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>*@
+
+
+
+    <style>
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        .errormessage {
+            color: red !important;
+            font-size: 13px !important;
+            float: right;
+        }
+
+        .errspan {
+            float: right;
+            margin-right: 8px;
+            margin-top: -32px;
+            position: relative;
+            z-index: 2;
+            color: red;
+            cursor: pointer;
+            display: none;
+        }
+
+
+        input.input-validation-error {
+            border: 0.083em solid red;
+        }
+
+        select.input-validation-error {
+            border: 0.083em solid red;
+        }
+
+        select.input-validation-error {
+            border: 0.083em solid red;
+        }
+    </style>
+}
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_1.jpg')" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate pb-5 text-center">
+                <h1 class="mb-3 bread">Account Settings</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="@Url.Action("Settings","Accounts")">Home <i class="ion-ios-arrow-forward"></i></a></span><span>Accounts <i class="ion-ios-arrow-forward"></i> Account Settings <i class="ion-ios-arrow-forward"></i></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container p-0 mb-5 " style="width: 80%;">
+    <div class="row mb-0 no-gutters w-100">
+        <h1 class="section-head col-lg-3 pt-2 pb-2">General Settings</h1>
+    </div>
+    <div class="row mb-0 pb-5 pt-5 no-gutters w-100 settings-section border" style="background-color: #F8F9FA;">
+        <div class="col-lg-5 float-left float-md-none">
+
+            <div class="form-group mb-3" style="text-align: center">
+                <img src="~/images/Default Image.png" id="blah" alt="user image" class="profile-pic img-thumbnail " style="width: 12rem; height: 12rem" />
+                <br />
+                <label for="imgInp" class="ChooseFile mt-3 p-2" style="width: 12rem">Select Image</label><br />
+
+                <input type='file' id="imgInp" runat="server" name="imgInp" accept="image/png,image/jpg,image/jpeg" onchange="validateFileType()" />
+
+            </div>
+        </div>
+
+        <div class="col-lg-7 float-left float-md-none">
+            <div class="form-group ml-lg-0 mb-3 ">
+                <label>Email ID</label>
+                @* <input type="text" class="custom-control disabled" placeholder="load email here" readonly="readonly" />*@
+                @Html.EditorFor(model => model.Client_Email, new { htmlAttributes = new { @id = "attorney_email", @readonly = "readonly", @class = "custom-control", @placeholder = "enter your email address", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.Client_Email, "", new { @class = "errormessage" })
+
+            </div>
+
+            <div class="form-group ml-lg-0 mb-3">
+                <label>Password</label>
+                <div style="width: 100%; overflow: hidden">
+                    <div class="float-left" style="width: 92%">
+                        @*<input type="password" class="custom-control pass" placeholder="load password here" id="password" />*@
+                        @Html.EditorFor(model => model.Client_Password, new { htmlAttributes = new { @id = "attorney_password", @type = "password", @class = "custom-control", @placeholder = "enter a password", @autocomplete = "off" } })
+                        <label class="errormessage" id="password_error"></label>
+                        @Html.ValidationMessageFor(model => model.Client_Password, "", new { @id = "password_message", @class = "errormessage" })
+
+                    </div>
+                    <div class="float-left" style="width: 8%">
+                        <button id="toggle" class="togglebtn inp" onclick="Toggle_Password('attorney_password')"></button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group ml-lg-0">
+                <button type="submit" onclick="Match_Password()" class="save-button p-2 float-right">
+                    Verify Password
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <div class="row mb-0 no-gutters w-100">
+        <h1 class="section-head col-lg-3 pt-2 pb-2">Client Information</h1>
+    </div>
+    @using (Html.BeginForm("settings_client", "accounts", FormMethod.Post))
+    {
+        <div class="row mb-0 pb-5 pt-5 no-gutters w-100 settings-section border" style="background-color: #F8F9FA;">
+            <div class="col-lg-6">
+                <div class="form-group mb-3">
+                    <label>Full Name</label>
+                    @*<input type="text" class="custom-control" placeholder="enter your full name" />*@
+                    @Html.EditorFor(model => model.Client_Name, new { htmlAttributes = new { @class = "custom-control", @placeholder = "enter your full name", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.Client_Name, "", new { @class = "errormessage" })
+
+
+
+                </div>
+
+
+
+                <div class="form-group mb-3 ">
+                    <label>Mobile Number</label>
+                    <div style="width: 100%; overflow: hidden">
+                        <div class="float-left" style="width: 15%">
+                            <input name="code" id="code" type="text" class="custom-control ronly" value="+92" readonly="readonly" placeholder="+92" />
+                        </div>
+                        <div class="float-left" style="width: 85%">
+                            @* <input type="text" class="custom-control inp" />*@
+                            @Html.EditorFor(model => model.Client_Number, new { htmlAttributes = new { @type = "number", @class = "custom-control", @placeholder = "enter your mobile number", @autocomplete = "off" } })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Client_Number, "", new { @class = "errormessage" })
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group mb-3 ">
+                    <label>Country</label>
+                    @Html.DropDownList("Country", (IEnumerable
+                  <SelectListItem>)ViewBag.Country, new { @id = "country", @class = "custom-control", @onChange = "selectedText(this)" })
+                    <input type="hidden" id="hdnProjectName" name="ContryName" />
+
+                </div>
+
+                <div class="form-group mb-5 ">
+                    <label>City</label>
+                    @* <input type="text" class="custom-control" placeholder="enter your city" />*@
+                    @Html.EditorFor(model => model.Client_City, new { htmlAttributes = new { @class = "custom-control", @placeholder = "enter your city", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.Client_City, "", new { @class = "errormessage" })
+
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="save-button p-2 float-right">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+
+<div class="modal" id="changepassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Reset Your Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body m-3" id="step1" style="width: 100%; overflow: hidden">
+                <p>Step 1: Enter your new password</p>
+                <div class="float-left" style="width: 82%">
+                    <input type="password" id="newpassword" class="custom-control" placeholder="enter password" />
+                    <label class="errormessage" id="savemessage"></label>
+                </div>
+                <div class="float-left" style="width: 8%">
+                    <button id="toggle" class="togglebtn inp" onclick="Toggle_Password('newpassword')"></button>
+                </div>
+                @* @Html.ValidationMessage("forgotemail", "invalid email address", new { @class = "errormessage" })*@
+
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" name="btn" value="save" id="savechanges" onclick="SavePassword()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        ScrollWindow();
+        $("#code").val()($("[name='Country']").find("option:selected").val());
+        $('#attorney_password').removeClass('validationerror');
+        $('#password_message').removeClass('errormessage');
+    });
+    function ScrollWindow() {
+        $("html, body").animate({ scrollTop: 650 }, 600);
+    }
+
+
+    $(function () {
+        $("[name='Country']").change(function () {
+            $("#code").val($(this).val());
+        });
+    });
+
+    $("#country").on("change", function () {
+        $("#hdnProjectName").val($(this).find("option:selected").text());
+    });
+
+    function Toggle_Password(Id) {
+        var temp;
+        temp = document.getElementById(Id);
+        if (temp.type === "password") {
+            temp.type = "text";
+            document.getElementById("toggle").style.backgroundColor = "#e0e0e0";
+        } else {
+            temp.type = "password";
+            document.getElementById("toggle").style.backgroundColor = "transparent";
+        }
+    }
+</script>
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        var SavePassword = function () {
+            var password = $("#newpassword").val();
+            var emailId = $("#attorney_email").val();
+            $.ajax({
+
+                type: "POST",
+                datatype: "text",
+                url: "/accounts/savefp_password",
+                data: { password: password, emailId: emailId },
+                success: function (data) {
+                    var result = $.trim(data);
+                    if (result === "1") {
+                        //alert("save successfuly");
+                        // $("#changepassword").modal('hide');
+
+
+                        $('#newpassword').removeClass('validationerror');
+                        $('#savemessage').text("save sucessfully")
+                        $("#attorney_password").text("");
+                        //$('#savemessage').innerText = "save successfully";
+
+                    } else if (result === "0") {
+                        $('#newpassword').addClass('validationerror');
+                        $('#savemessage').text("password must be greater than 6")
+                    }
+
+                }
+
+            })
+
+        }
+
+        var Match_Password = function () {
+            var password = $("#attorney_password").val();
+
+            $.ajax({
+
+                type: "POST",
+                datatype: "text",
+                url: "/accounts/match_password",
+                data: { password: password },
+                success: function (data) {
+                    var result = $.trim(data);
+                    if (result === "1") {
+
+                        $("#changepassword").modal('show');
+                        $('#password_error').text("");
+                        $('#attorney_password').text("");
+
+                    } else if (result === "0") {
+                        //document.getElementById("password_error").innerText("wrong password");
+                        $('#password_error').text("wrong password");
+                    }
+
+                }
+
+            });
+
+        }
+    </script>
+}  

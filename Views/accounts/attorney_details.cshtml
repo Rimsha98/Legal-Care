@@ -1,0 +1,226 @@
+﻿@model SeedaniLegalCare.Models.Attorney
+@section  register{
+
+    <link href="~/Content/bootstrap330.min.css" rel="stylesheet" id="bootstrap-css" />
+    <script src="~/Scripts/bootstrap330.min.js"></script>
+    <script src="~/Scripts/jquery1111.min.js"></script>
+    <script src="~/Scripts/jquery191.min.js"></script>
+
+
+    <style>
+        .modal {
+    z-index: 9999;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.modal-dialog {
+    z-index: 99999;
+}
+        .table-button {
+            border: none;
+            background-color: #AFA939;
+            color: #fff;
+            height: 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+            .table-button:hover {
+                background-color: #ded871;
+            }
+
+            .table-button:focus {
+                outline: none;
+            }
+
+        #Client-Data thead {
+            background-color: #222831;
+            font-size: 12px;
+            color: #fff;
+        }
+
+            #Client-Data thead th {
+                text-align: center;
+            }
+
+        .user-image {
+            height: 35px;
+            width: 35px;
+            object-fit: cover;
+        }
+
+        #Client-Data tbody tr td {
+            vertical-align: middle;
+            font-size: 12px;
+        }
+
+        .approve-icon, .delete-icon, .delete-icon2, .expand-icon {
+            background-color: #222831;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            border-radius: 50%;
+            width: 27px;
+            height: 27px;
+        }
+
+        .delete-icon, .delete-icon2 {
+            background-color: #E82F2F;
+            font-size: 15px;
+        }
+
+        .expand-icon {
+            background-color: #AFA939;
+        }
+
+        .delete-icon2 {
+            width: 22px;
+            height: 22px;
+            font-size: 12px;
+        }
+
+            .delete-icon:focus, .delete-icon2:focus, .approve-icon:focus, .expand-icon:focus {
+                outline: none;
+            }
+
+
+        .approve-icon:hover {
+            background-color: #505050;
+        }
+
+        .delete-icon:hover, .delete-icon2:hover {
+            background-color: #FF7E7E;
+        }
+
+        .expand-icon:hover {
+            background-color: #ded871;
+        }
+
+        .btnn {
+            width: 3%;
+        }
+
+        #exampleModalCenter, #approverequest, #Expand-Attorney {
+            z-index: 9999;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .modal-dialog {
+            z-index: 99999;
+        }
+
+        .pagination {
+            margin-right: 15px;
+        }
+
+            .pagination > li > a {
+                color: #222831 !important;
+            }
+
+            .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover,
+            .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+                background-color: #AFA939 !important;
+                border-color: #AFA939 !important;
+                color: #fff !important;
+            }
+
+        #attorneymodal-label, .sm-head {
+            color: #AFA939;
+        }
+
+        #delete {
+            background-color: #AFA939 !important;
+            border-color: #AFA939 !important;
+        }
+
+            #delete:hover {
+                background-color: #ded871 !important;
+                border-color: #ded871 !important;
+            }
+
+        #close:hover {
+            color: #fff !important;
+        }
+    </style>
+
+}
+
+<div class="modal-header">
+    <h5 class="modal-title float-left font-weight-bold">Attorney Information</h5>
+    <button class="delete-icon2 float-right" title="Close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+</div>
+<div class="modal-body mt-4" style="text-align: center">
+    <div class="container-fluid p-0 m-0">
+        <div class="row">
+            <div class="col-md-12">
+                <table id="attorney-info" style="border: 1px solid #ddd" class="table table-striped">
+                    <tr>
+                        <td class="sm-head">Education</td>
+                        <td>
+
+                            @Html.DisplayFor(model => model.Attorney_Education)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="sm-head">Years of Experience</td>
+                        <td>
+                            @Html.DisplayFor(model => model.Attorney_Experience)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="sm-head">Date of Birth</td>
+                        <td>
+                            @Html.DisplayFor(model => model.Attorney_DOB)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="sm-head">Law Firm</td>
+                        <td>
+                            @Html.DisplayFor(model => model.Attorney_Firm)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="sm-head">Cases Handled</td>
+                        <td>
+                            @Html.DisplayFor(model => model.Attorney_Cases)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="sm-head">Certifications</td>
+                        <td>
+                            @Html.DisplayFor(model => model.Attorney_Certification)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="sm-head">Languages</td>
+                        <td>
+                            @Html.DisplayFor(model => model.Attorney_Languages)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="sm-head">Role as Attorney</td>
+                        <td id="role">
+                            @Html.DisplayFor(model => model.Attorney_Role)
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

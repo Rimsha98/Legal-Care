@@ -1,0 +1,264 @@
+﻿@model SeedaniLegalCare.Models.Blog
+@{
+    ViewBag.Title = "blog_edit";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+@section HeaderStyling{
+    <script src="https://kit.fontawesome.com/e1303a18ed.js" crossorigin="anonymous"></script>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+    @*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
+    @*<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>*@
+
+
+    <script>
+
+
+        function RegisterClient(evt) {
+            evt.preventDefault();
+            if (client_Error == true) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
+    </script>
+    <style>
+
+        /*input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }*/
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        .errormessage {
+            color: red !important;
+            font-size: 13px !important;
+            float: right;
+            margin-right: 2px;
+        }
+
+        .errspan {
+            float: right;
+            margin-right: 8px;
+            margin-top: -32px;
+            position: relative;
+            z-index: 2;
+            color: red;
+            cursor: pointer;
+            display: none;
+        }
+
+        .errorboarder {
+            border: 0.083em solid red;
+        }
+
+        input.input-validation-error {
+            border: 0.083em solid red;
+        }
+
+        select.input-validation-error {
+            border: 0.083em solid red;
+        }
+
+        select.input-validation-error {
+            border: 0.083em solid red;
+        }
+    </style>
+    <style>
+
+        .rowboarder {
+            border: 1px solid lightgrey;
+        }
+
+        .rowElemets label, input {
+            border: 1px solid transparent;
+            font-size: 14px;
+            text-align: left;
+            height: 40px
+        }
+
+        .LableStyling {
+            color: #AFA939;
+            margin-top: 7px;
+            margin-bottom: 1px;
+        }
+
+        .btn_col {
+            color: gray;
+        }
+
+        .left-label {
+            color: #AFA939;
+            float: left;
+        }
+
+        .compose-textbox:focus {
+            outline: none;
+            background-color: #FBFBFB;
+        }
+
+        textarea {
+            border: none;
+            min-height: 330px;
+        }
+    </style>
+}
+
+@section Styles{
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="~/summernote/summernote-bs4.css" rel="stylesheet" />
+
+}
+
+
+
+@using (Html.BeginForm("blog_edit", "blog", FormMethod.Post, new { @id = "create_blog" }))
+{<section>
+        <div class="row pb-4 top-section">
+            <div class="col-md-4 mt-2 mb-2">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search..." class="float-left" />
+                    <button type="button" class="float-left search-btn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+        </div>
+        <div class="sub-content mb-5">
+            <div class="row no-gutters p-0 m-0 border-bottom" style="display: flex; align-items: center;">
+                <div class="col-lg-1 pl-4 pt-2 pr-4 ">
+                    <label class="left-label">Author: </label>
+                </div>
+                <div class="col-lg-11" style="text-align: left;">
+                    @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "w-100 pl-4 pr-4 compose-textbox", @placeholder = "composer name", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.Author, "", new { @class = "errormessage" })
+
+                    @*<input type="text" value="Ayesha Khalid" class="w-100 pl-4 pr-4 compose-textbox" />*@
+                </div>
+
+            </div>
+
+            <div class="row no-gutters p-0 m-0 " style="display: flex; align-items: center;">
+                <div class="col-lg-1 pl-4 pt-2 pr-4">
+                    <label class="left-label">Date:</label>
+                </div>
+                <div class="col-lg-11" style="text-align: left;">
+                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new {@readonly="readonly",  @class = "w-100 pl-4 pr-4 compose-textbox", @placeholder = "-- / -- / ----", @autocomplete = "off" } })
+                    @*@Html.TextBoxFor(model => model.Date,  new { htmlAttributes = new { @class = "w-100 pl-4 pr-4 compose-textbox",@value=DateTime.Now.ToString("dd/mm/yyyy") ,@placeholder = "composer name", @autocomplete = "off" } })*@
+                    @* <input type="text" value="@DateTime.Today()" class="w-100 pl-4 pr-4 compose-textbox" />*@
+                </div>
+            </div>
+            <div class="row no-gutters p-0 m-0 border-bottom" style="display: flex; align-items: end;">
+                <div class="col-lg-12 pl-4 pt-2 pr-4" style="text-align:right;">
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "errormessage" })
+                </div>
+
+            </div>
+
+            <div class="row no-gutters p-0 m-0 border-bottom" style="display: flex; align-items: center;">
+                <div class="col-lg-1 pl-4 pt-2 pr-4">
+                    <label class="left-label">Title:</label>
+                </div>
+                <div class="col-lg-11" style="text-align: left;">
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "w-100 pl-4 pr-4 compose-textbox", @placeholder = "This is a small blog post title just to demonstrate", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "errormessage" })
+                    @*<input type="text" value="This is a small blog post title just to demonstrate" class="w-100 pl-4 pr-4 compose-textbox" />*@
+                </div>
+            </div>
+
+            <div class="row no-gutters p-0 m-0" style="display: flex; align-items: center;">
+                <div class="col-lg-12 " style="text-align: left;">
+                    @Html.TextAreaFor(model => model.Blog_Content, new { @class = "w-100 p-4 compose-textbox border-bottom", @id = "summernote" })
+                    @Html.ValidationMessageFor(model => model.Blog_Content, "", new { @class = "errormessage" })
+                    @*<textarea id="summernote" cols="30" rows="33" class="w-100 p-4 compose-textbox border-bottom">
+                              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+
+                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                        </textarea>*@
+                </div>
+
+
+            </div>
+
+            <div class="row no-gutters p-0 m-0 border-bottom" style="display: flex; align-items: center;">
+                <div class="col-lg-6 pl-4 pr-4 btn-toolbar">
+                    <label id="contenterror"></label>
+                    @*<div class="btn-group">
+                            <button class="btn pl-0"><i class="fa fa-bold btn_col"></i></button>
+                            <button class="btn"><i class="fa fa-italic btn_col"></i></button>
+                            <button class="btn"><i class="fa fa-underline btn_col"></i></button>
+                            <button class="btn"><i class="fa fa-link btn_col"></i></button>
+                            <button class="btn"><i class="fa fa-image btn_col"></i></button>
+                        </div>*@
+                </div>
+                <div class="col-lg-6 p-3" style="text-align: right;">
+                    <button type="button" onclick="location.href='/blog/all_posts'" class="btn btn-secondary  mr-2 cancel-button" style="background-color:black;">Cancel</button>
+                    <button type="submit" class="btn btn-primary proceed-button">Save Changes</button>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </section>
+}
+<script src="~/summernote/summernote-bs4.js"></script>
+<script>
+    //$('#summernote').summernote();
+    $('#summernote').summernote({
+        placeholder: 'Write blog content here',
+        tabsize: 2,
+        height: 330,
+        minHeight: 300,
+        maxHeight:500,
+        toolbar: [
+            // [groupName, [list of button]]
+
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['para', ['ul', 'ol']],
+            ['Insert', ['link']],
+            ['view', ['fullscreen']],
+
+        ]
+
+    });
+
+    //var validateTextArea = function () {
+    //    if ($('#summernote').length==0){
+    //        console.log('contents is empty, fill it!');
+    //         $('#summernote').addClass("errorboarder");
+
+
+    //e.preventDefault();
+    //    }
+
+    //}
+
+    //$('#create_blog').on('submit', function (e) {
+
+    //    if ($('#summernote').summernote('isEmpty')) {
+    //        $('#summernote').addClass("errorboarder");
+
+    //         $('#contenterror').innerText("blog content is required");
+
+    //        // cancel submit
+    //        e.preventDefault();
+    //    }
+
+    //});
+</script>

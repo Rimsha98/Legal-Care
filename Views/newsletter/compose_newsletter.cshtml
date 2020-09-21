@@ -1,0 +1,175 @@
+﻿
+@{
+    ViewBag.Title = "Create Newsletter";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+@section HeaderStyling{
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+    <link href="~/Content/newsletter.css" rel="stylesheet" />
+}
+
+@model SeedaniLegalCare.Models.Section
+
+@{ var Date = DateTime.Today.ToString("dd/MM/yyyy"); }
+
+@using (Html.BeginForm("compose_newsletter", "newsletter", FormMethod.Post, new { id = "submit", enctype = "multipart/form-data" }))
+{
+    <div class="sub-content pb-4">
+
+        <div class="row p-5">
+            <div class="col-md-4 mt-4">
+                <input id="newsletter-date" readonly="readonly" class="custom-control" value="Date: @Date" />
+            </div>
+            <div class="col-md-4 mt-4">
+                <button id="Insert-Section" type="button" class="custom-control btn">Insert Section</button>
+            </div>
+            <div class="col-md-4 mt-4">
+                <button class="custom-control btn" type="submit" id="submit">Save Newsletter</button>
+            </div>
+        </div>
+
+        <fieldset class="mt-5 pb-5 mb-5 newsletter-section" id="Section">
+            <legend id="Section-Head" class="p-2 ml-3"></legend>
+
+            <input type="text" hidden="hidden" name="sections[0].ID" value="1" id="Hidden-ID" />
+            <div class="container-fluid">
+                <div class="row ">
+                    <div class="col-md-6 mt-4 image-col">
+                        <input id="image" class="custom-control" readonly="readonly" placeholder="image path" />
+                    </div>
+                    <div class="col-md-3  mt-4">
+                        <select id="select" name="sections[0].Image_Position" class="custom-control">
+                            <option>Image Position</option>
+                            <option value="left">Left</option>
+                            <option value="right">Right</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mt-4">
+                        <label class="custom-control btnblack pt-3 pr-4" style="display: block; text-align: center;">
+                            <input type="file" name="sections[0].Image" id="file" />Select Image
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-9 mt-4">
+                        <input id="heading" name="sections[0].Heading" placeholder="enter a heading title here" class="custom-control" />
+                    </div>
+                    <div class="col-md-3 mt-4">
+                        <input class="myradio one" type="radio" name="sections[0].Heading_Color" value="black" checked="checked" />
+                        <input class="myradio two" type="radio" name="sections[0].Heading_Color" value="mustard" />
+                        <input class="myradio three" type="radio" name="sections[0].Heading_Color" value="brown" />
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12 mt-4">
+                        <textarea id="text" name="sections[0].Text" placeholder="enter your content here" class="custom-control pt-4 pb-4"></textarea>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-5 mt-4">
+                        <input id="link-text" name="sections[0].Link_Title" placeholder="enter link text here" class="custom-control" />
+                    </div>
+                    <div class="col-md-4 mt-4">
+                        <input id="link-url" name="sections[0].Link_Url" placeholder="enter link url here" class="custom-control" />
+                    </div>
+                    <div class="col-md-3 mt-4">
+                        <input class="myradio one" type="radio" name="sections[0].Link_Color" value="black" checked="checked" />
+                        <input class="myradio two" type="radio" name="sections[0].Link_Color" value="mustard" />
+                        <input class="myradio three" type="radio" name="sections[0].Link_Color" value="brown" />
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+
+}
+<script>
+    $(document).ready(function () {
+        var i = 0;
+        var count = 1;
+        $("#Section-Head").html("Newsletter: Section " + count);
+        $("#Insert-Section").click(function () {
+            i = i + 1;
+            count = count + 1;
+
+            if (i >= 10) {
+                $('.sub-content').append("<p>You can't create more sections</p>");
+                $('#Insert-Section').attr("disabled", "true");
+            }
+
+            else {
+                var clone = $("#Section").clone();
+                clone.find('input').val('');
+                clone.find('input').css("background-color")
+                clone.find('#text').val('');
+                clone.find("#Section-Head").html("Newsletter: Section " + count);
+
+
+                clone.find("#Hidden-ID").attr("name", "sections[" + i + "].ID");
+                clone.find("#Hidden-ID").attr("value", count);
+                clone.find("#select").attr("name", "sections[" + i + "].Image_Position");
+                clone.find("#file").attr("name", "sections[" + i + "].Image");
+                clone.find("#heading").attr("name", "sections[" + i + "].Heading");
+
+                clone.find("input[name='sections[0].Heading_Color']").attr("name", "sections[" + i + "].Heading_Color");
+                clone.find("#text").attr("name", "sections[" + i + "].Text");
+                clone.find("#link-text").attr("name", "sections[" + i + "].Link_Title");
+                clone.find("#link-url").attr("name", "sections[" + i + "].Link_Url");
+                clone.find("input[name='sections[0].Link_Color']").attr("name", "sections[" + i + "].Link_Color");
+
+                $('.sub-content').append(clone);
+            }
+
+
+        });
+    });
+
+    jQuery(function ($) {
+        $('input[type="file"]').change(function () {
+            if ($(this).val()) {
+                error = false;
+
+                var filename = $(this).val();
+                alert($(this).attr('name'));
+                $(this).find('#image').attr("value", filename);
+            }
+        });
+    });
+
+    $(function () {
+        $(".heading", ".text").on('click', function () {
+            $(this).css("background-color", "#fff");
+        });
+    });
+
+
+    $('#submit').click(function (e) {
+        var isValid = true;
+        $('#heading', '#text').each(function () {
+            if ($.trim($(this).val()) == '') {
+                isValid = false;
+                $(this).attr('placeholder', 'must fill this field');
+                $(this).css({
+                    "background": "#FFCECE"
+                });
+            }
+            else {
+                $(this).css({
+                    "background": ""
+                });
+
+                $('#submit').submit();
+            }
+        });
+        if (isValid == false)
+            e.preventDefault();
+
+    });
+
+
+</script>

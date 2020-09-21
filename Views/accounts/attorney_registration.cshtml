@@ -1,0 +1,728 @@
+﻿@model SeedaniLegalCare.Models.Attorney
+@{
+    ViewBag.Title = "Attorney Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/e1303a18ed.js" crossorigin="anonymous"></script>
+}
+@section ValidateFields{
+
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+    @*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
+    @*<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>*@
+
+
+    <script>
+
+
+        function RegisterClient(evt) {
+            evt.preventDefault();
+            if (client_Error == true) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
+    </script>
+    <style>
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        .errormessage {
+            color: red !important;
+            font-size: 13px !important;
+            float: right;
+        }
+
+        .errspan {
+            float: right;
+            margin-right: 8px;
+            margin-top: -32px;
+            position: relative;
+            z-index: 2;
+            color: red;
+            cursor: pointer;
+            display: none;
+        }
+
+
+        input.input-validation-error {
+            border: 0.083em solid red;
+        }
+
+        select.input-validation-error {
+            border: 0.083em solid red;
+        }
+
+        select.input-validation-error {
+            border: 0.083em solid red;
+        }
+    </style>
+}
+
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_1.jpg')" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate pb-5 text-center">
+                <h1 class="mb-3 bread">Attorney Registration</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="@Url.Action("AttorneyRegistration", "Accounts")">Home <i class="ion-ios-arrow-forward"></i></a></span><span>Accounts <i class="ion-ios-arrow-forward"></i> Attorney Registration <i class="ion-ios-arrow-forward"></i></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+@{ 
+    //Session["activetab"] = null;
+    if (string.IsNullOrEmpty(Session["activetab"] as string) || Session["activetab"] == null)
+    {<script>
+     $(function () {
+        ScrollWindow();
+        var b = document.getElementById("Section-1");
+        b.style.display = "block";
+        $('.active').removeClass('active');
+        $('#Step-1').addClass('active');
+    }); 
+    </script>
+
+    }
+    else if (Session["activetab"].ToString() == "1")
+    {
+<script>
+    $(function () {
+        ScrollWindow();
+        var b = document.getElementById("Section-2");
+        b.style.display = "block";
+        $('.active').removeClass('active');
+        $('#Step-2').addClass('active');
+    });
+</script>
+    }
+    else if (Session["activetab"].ToString() == "2")
+    {
+<script>
+    $(function () {
+        ScrollWindow();
+        var b = document.getElementById("Section-3");
+        //var a = document.getElementById("Section-1");
+        //var c = document.getElementById("Section-2");
+        //a.style.display = "none";
+        //c.style.display = "none";
+        b.style.display = "block";
+        $('.active').removeClass('active');
+        $('#Step-3').addClass('active');
+    });
+</script>
+    } else
+    {
+        Session["activetab"] = null;
+
+    }
+}
+
+@using (Html.BeginForm("attorney_registration", "accounts", FormMethod.Post, new { encType = "multipart/form-data", @id = "attorney" }))
+{
+<section class="ftco-section ftco-no-pt ftco-no-pb mt-5 mb-5" id="Register">
+    <div class="container p-0" style="width: 80%;">
+        <div class="row mb-0 no-gutters w-100 form-group">
+            <div class="col-lg-4 float-left float-md-none">
+                <button class="form-button p-2" id="Step-1" type="button" onclick="ShowBasic()">Basic Information</button>
+            </div>
+            <div class="col-lg-4 float-left float-md-none">
+                <button class="form-button p-2" id="Step-2" name="next" value="step1next" onclick="Verify_Step1(this)">Professional Information</button>
+            </div>
+            <div class="col-lg-4 float-left float-md-none">
+                <button class="form-button p-2" id="Step-3" name="next" type="submit" value="step2next" onclick="Verify_Step2(this)">Upload Image</button>
+            </div>
+        </div>
+        <div class="row mt-0 p-0 no-gutters w-100">
+
+            <!--- Section 1: Basic Information -->
+            <div class="col-lg-12 form-section" id="Section-1">
+                <div class="row mt-0 p-0 pt-3 pb-3 no-gutters w-100">
+                    <div class="col-lg-6">
+                        <div class="form-group mt-4 mb-3">
+                            <label>Full Name</label>
+                            @*<input type="text" class="custom-control" placeholder="enter your full name" />*@
+                            @Html.EditorFor(model => model.Attorney_Name, new { htmlAttributes = new { @class = "custom-control", @placeholder = "enter your full name", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.Attorney_Name, "", new { @class = "errormessage" })
+
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label>Email ID</label>
+                            @*<input type="text" class="custom-control" placeholder="enter your email address" />*@
+                            @Html.EditorFor(model => model.Attorney_Email, new { htmlAttributes = new { @class = "custom-control", @placeholder = "enter your email address", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.Attorney_Email, "", new { @class = "errormessage" })
+
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label>Password</label>
+                            @* <input type="text" class="custom-control" placeholder="enter a password" />*@
+                            @Html.EditorFor(model => model.Attorney_Password, new { htmlAttributes = new { @class = "custom-control", @placeholder = "enter a password", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.Attorney_Password, "", new { @class = "errormessage" })
+
+                        </div>
+
+                        <div class="form-group  mb-3 mb-lg-4">
+                            <label>Confirm Password</label>
+                            @*<input type="text" class="custom-control" placeholder="re-enter password" />*@
+                            @Html.EditorFor(model => model.Attorney_ConfirmPassword, new { htmlAttributes = new { @class = "custom-control", @placeholder = "re-enter password", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.Attorney_ConfirmPassword, "", new { @class = "errormessage" })
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                       
+                        <div class="form-group mb-3  mt-lg-4">
+                            <label>Country</label>
+                            @Html.DropDownList("Country", (IEnumerable
+                         <SelectListItem>)ViewBag.Country, new { @id = "country", @class = "custom-control", @onChange = "selectedText(this)" })
+                            <input type="hidden" id="hdnProjectName" name="ContryName" />
+                        </div>
+
+                        <div class="form-group mb-3 ">
+                            <label>City</label>
+                            @*<input type="text" class="custom-control" placeholder="enter your city" />*@
+                            @Html.EditorFor(model => model.Attorney_City, new { htmlAttributes = new { @class = "custom-control", @placeholder = "enter your city", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.Attorney_City, "", new { @class = "errormessage" })
+
+                        </div>
+
+                        <div class="form-group mb-3 ">
+                            <label>Mobile Number</label>
+                            <div style="width: 100%; overflow: hidden">
+                                <div class="float-left" style="width: 15%">
+                                    <input name="code" id="code" type="text" class="custom-control ronly" value="+92" readonly="readonly" placeholder="+92" />
+                                </div>
+                                <div class="float-left" style="width: 85%">
+                                    @*<input type="text" class="custom-control inp" />*@
+                                    @Html.EditorFor(model => model.Attorney_Number, new { htmlAttributes = new { @type = "number", @class = "custom-control", @placeholder = "enter your mobile number", @autocomplete = "off" } })
+
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Attorney_Number, "", new { @class = "errormessage" })
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3  mb-lg-4">
+                            <label>Gender</label><br />
+                            @Html.RadioButtonFor(model => model.Attorney_Gender, "Male", new { @checked = "checked", @class = "form-radio" })
+                            <label>Male</label>
+                            @Html.RadioButtonFor(model => model.Attorney_Gender, "Female", new { @class = "form-radio" })
+                            <label>Female</label>
+                            @Html.RadioButtonFor(model => model.Attorney_Gender, "Other", new { @class = "form-radio" })
+                            <label>Other</label>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4 mb-4 no-gutters w-100">
+                        <div class="col-6">
+                            <div class="form-group">
+                            </div>
+
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group" style="text-align: right">
+                                <button class="navigate-buttons p-1" type="submit" name="next" value="step1next" onclick="Verify_Step1(this)">
+                                    <span class="myicon"><i class="fas fa-3x fa-arrow-circle-right"></i></span>
+                                    <span class="mytext">Next Step</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--- Section 2: Professional Information -->
+            <div class="col-lg-12 form-section" id="Section-2">
+                <div class="row mt-0 p-0 pt-3 pb-3 no-gutters w-100">
+                    <div class="col-lg-6">
+                        <div class="form-group mt-4 mb-3">
+                            <label>Date of Birth</label>
+                            @*<input type="text" class="custom-control" placeholder="-- / -- / ----" />*@
+                            @Html.EditorFor(model => model.Attorney_DOB, new { htmlAttributes = new { @type = "date", @class = "custom-control", @placeholder = "-- / -- / ----", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.Attorney_DOB, "", new { @class = "errormessage" })
+
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label>Years of Experience</label>
+                            @*<input type="text" class="custom-control" placeholder="enter the number of years of experience" />*@
+                            @Html.EditorFor(model => model.Attorney_Experience, new { htmlAttributes = new { @type = "number", @class = "custom-control", @placeholder = "enter the number of years of experience", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.Attorney_Experience, "", new { @class = "errormessage" })
+
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label>Education</label>
+                            @*<input type="text" class="custom-control" placeholder="what university did you go to?" />*@
+                            @Html.EditorFor(model => model.Attorney_Education, new { htmlAttributes = new { @class = "custom-control", @placeholder = "what university did you go to?", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.Attorney_Education, "", new { @class = "errormessage" })
+
+                        </div>
+
+                        <div class="form-group  mb-3 mb-lg-4">
+                            <label>Cases Handled</label>
+                            @*<input type="text" class="custom-control" placeholder="enter the number of cases handled" />*@
+                            @Html.EditorFor(model => model.Attorney_Cases, new { htmlAttributes = new { @type = "number", @class = "custom-control", @placeholder = "enter the number of cases handled", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.Attorney_Cases, "", new { @class = "errormessage" })
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group mb-3  mt-lg-4">
+                            <label>Attorney Role</label>
+                            <select class="custom-control" id="role" name="role" asp-validation-for="role">
+                                <option selected="selected" value="0">select your role as attorney</option>
+                                <option>Criminal Attorney</option>
+                                <option>Tax Attorney</option>
+                                <option>Business Attorney</option>
+                            </select>
+                            <span id="errorMsg" asp-validation-for="role" class="errormessage"></span>
+                            @Html.ValidationMessageFor(model=>model.Attorney_Role,"", new { @class = "errormessage" })
+
+                        </div>
+
+                        <div class="form-group mb-3 ">
+                            <label>Law Firm</label>
+                            @*<input type="text" class="custom-control" placeholder="what law firm did you work at?" />*@
+                            @Html.EditorFor(model => model.Attorney_Firm, new { htmlAttributes = new { @class = "custom-control", @placeholder = "what law firm did you work at?", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.Attorney_Firm, "", new { @class = "errormessage" })
+
+                        </div>
+
+                        <div class="form-group mb-3 ">
+                            <label>Languages</label>
+                            @*<input type="text" class="custom-control" placeholder="enter the languages you speak" />*@
+                            @Html.EditorFor(model => model.Attorney_Languages, new { htmlAttributes = new { @class = "custom-control", @placeholder = "enter the languages you speak", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.Attorney_Languages, "", new { @class = "errormessage" })
+
+                        </div>
+
+                        <div class="form-group mb-3  mb-lg-4">
+                            <label>Certification</label>
+                            @*<input type="text" class="custom-control" placeholder="what certifications do you have?" />*@
+                            @Html.EditorFor(model => model.Attorney_Certification, new { htmlAttributes = new { @class = "custom-control", @placeholder = "what certifications do you have?", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.Attorney_Certification, "", new { @class = "errormessage" })
+
+                        </div>
+                    </div>
+
+                    <div class="row mt-4 mb-4 no-gutters w-100">
+                        <div class="col-6">
+                            <div class="form-group mb-3 mb-lg-0" style="text-align: left; ">
+                                <button class="navigate-buttons p-1" type="button" onclick="ShowBasic()">
+                                    <span class="myicon"><i class="fas fa-3x fa-arrow-circle-left"></i></span>
+                                    <span class="mytext">Previous Step</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group" style="text-align: right">
+                                <button class="navigate-buttons p-1" name="next" value="step2next" onclick="Verify_Step2(this)" type="submit">
+                                    <span class="myicon"><i class="fas fa-3x fa-arrow-circle-right"></i></span>
+                                    <span class="mytext">Next Step</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 form-section" id="Section-3">
+                <div class="row mt-0 p-0 pt-3 pb-3 no-gutters w-100">
+                    <div class="col-lg-12">
+                        <div class="form-group  mt-5 mb-3" style="text-align: center">
+                            <img src="~/images/Default Image.png" id="blah" alt="user image" class="profile-pic img-thumbnail rounded-circle" />
+                            <br />
+                            <label for="imgInp" class="ChooseFile mt-4 mb-2 p-2">Select Image</label><br />
+                            <input type='file' id="imgInp" runat="server" name="imgInp" accept="image/png,image/jpg,image/jpeg" onchange="validateFileType()" />
+                        </div>
+                    </div>
+
+                    <div class="row mt-5 mb-4 no-gutters w-100">
+                        <div class="col-6">
+                            <div class="form-group mb-3 mb-lg-0" style="text-align: left; ">
+                                <button class="navigate-buttons p-1" type="button" onclick="ShowProf()">
+                                    <span class="myicon"><i class="fas fa-3x fa-arrow-circle-left"></i></span>
+                                    <span class="mytext">Previous Step</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group" style="text-align: right">
+                                <button class="navigate-buttons p-1" data-toggle="modal" data-target="#exampleModalCenter" onclick="ShowPopup(this)"  type="submit" name="next" value="finish">
+                                    <span class="myicon"><i class="fas fa-3x fa-check-circle"></i></span>
+                                    <span class="mytext">Finish</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Verify Your Email</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body m-3" id="step1">
+                    <p>Enter the email verification code in the following field:</p>
+                    <input type="number" maxlength="4" name="codeinput" class="custom-control" placeholder="enter code here" />
+                    <label style="color:red;">@ViewBag.InvalidCode</label>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="resend" type="submit" name="next" value="finish" onclick="ShowPopup(this)">Resend Code</button>
+                    <button class="btn btn-secondary" id="verify" type="submit" name="next" value="verify" onclick="ShowPopupAfterVerification(this)">Verify</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+}
+<script>
+
+
+    //function validateDropdown() {
+    //        //Get dropdownlist selected value
+    //        var selectedval = $('#role').find(":selected").text();
+    //        //Check if selected value is empty or not
+    //        if (selectedval == "") {
+    //            $("#errorMsg").text("select role");
+    //            return false;
+    //        }
+    //        else {
+    //            $("#errorMsg").text(" ");
+    //            return false;
+    //        }
+    //    }
+
+
+    //$(function () {
+    //    ScrollWindow();
+    //    var b = document.getElementById("Section-1");
+    //    b.style.display = "block";
+    //    $('.active').removeClass('active');
+    //    $('#Step-1').addClass('active');
+    //});
+
+    /*    $(".navigate-buttons").click(function() {
+        $([document.documentElement, document.body]).animate({
+            scrollTop: $("#Register").offset().top
+        }, 1000);
+        }); */
+
+     $(function () {
+        $("[name='Country']").change(function () {
+            $("#code").val($(this).val());
+        });
+    });
+
+    $("#country").on("change", function () {
+        $("#hdnProjectName").val($(this).find("option:selected").text());
+    });
+
+
+     var basicinfo = document.getElementById("Section-1");
+    var profinfo = document.getElementById("Section-2");
+    var upimage = document.getElementById("Section-3");
+
+    function ShowPopup(btnClicked)
+{
+       var $form = $(btnClicked).parents('form');
+
+     
+        $.ajax({
+            type: "POST",
+            url: $form.attr('action'),
+           // data: $('#client').serialize() + '&' + encodeURIComponent(btnClicked.name15) + '=' + encodeURIComponent(btnClicked.value),
+            data: $form.serialize() + '&' + encodeURIComponent("next") + '=' + encodeURIComponent("finish"),
+             
+            error: function(xhr, status, error) {
+                  
+             },
+            success: function (response) {
+                 //var basicinfo = document.getElementById("Section-1");
+                 //var upimage = document.getElementById("Section-2");
+                 var popup = document.getElementById("exampleModalCenter");
+              
+              
+                    $('.active').removeClass('active');
+                    $('#Step-3').addClass('active');
+                    basicinfo.style.display = "none";
+                    profinfo.style.display = "none";
+                    ScrollWindow();
+                    upimage.style.display = "block";
+                    popup.style.display = "block";
+
+                    window.stop();
+     
+            }
+        });
+
+  return false;// if it's a link to prevent post
+
+    }
+
+     function ShowPopupAfterVerification(btnClicked)
+{
+       var $form = $(btnClicked).parents('form');
+
+     
+        $.ajax({
+            type: "POST",
+            url: $form.attr('action'),
+           // data: $('#client').serialize() + '&' + encodeURIComponent(btnClicked.name15) + '=' + encodeURIComponent(btnClicked.value),
+            data: $form.serialize() + '&' + encodeURIComponent("next") + '=' + encodeURIComponent("verify"),
+             
+            error: function(xhr, status, error) {
+                  
+             },
+            success: function (response) {
+                  var popup = document.getElementById("exampleModalCenter");
+              
+              
+                    $('.active').removeClass('active');
+                    $('#Step-3').addClass('active');
+                    basicinfo.style.display = "none";
+                    profinfo.style.display = "none";
+                    ScrollWindow();
+                    upimage.style.display = "block";
+                    popup.style.display = "block";
+
+                var load = '@Session["load"]';
+                if (load != "1") {
+                    window.stop();
+                    @{ 
+                        Session["load"] = "1";
+                    }
+                }
+                  
+     
+            }
+        });
+
+  return false;// if it's a link to prevent post
+
+}
+   
+
+    function ShowBasic() {
+        //if (basicinfo.style.display == "none") {
+            $('.active').removeClass('active');
+            $('#Step-1').addClass('active');
+            basicinfo.style.display = "block";
+            ScrollWindow();
+            profinfo.style.display = "none";
+            upimage.style.display = "none";
+        //}
+
+        //else {
+        //    $('.active').removeClass('active');
+        //    $('#Step-1').addClass('active');
+        //    basicinfo.style.display = "block";
+        //    ScrollWindow();
+        //    profinfo.style.display = "none";
+        //    upimage.style.display = "none";
+        //}
+    }
+
+    function ShowProf() {
+        if (profinfo.style.display == "none") {
+            $('.active').removeClass('active');
+            $('#Step-2').addClass('active');
+            profinfo.style.display = "block";
+            ScrollWindow();
+            basicinfo.style.display = "none";
+            upimage.style.display = "none";
+        }
+
+        else {
+            $('.active').removeClass('active');
+            $('#Step-2').addClass('active');
+            profinfo.style.display = "block";
+            ScrollWindow();
+            basicinfo.style.display = "none";
+            upimage.style.display = "none";
+        }
+    }
+
+    function ShowImage() {
+        if (upimage.style.display == "none") {
+            $('.active').removeClass('active');
+            $('#Step-3').addClass('active');
+            upimage.style.display = "block";
+            ScrollWindow();
+            basicinfo.style.display = "none";
+            profinfo.style.display = "none";
+        }
+
+        else {
+            $('.active').removeClass('active');
+            $('#Step-3').addClass('active');
+            upimage.style.display = "block";
+            ScrollWindow();
+            basicinfo.style.display = "none";
+            profinfo.style.display = "none";
+        }
+    }
+
+    function ScrollWindow() {
+        $("html, body").animate({ scrollTop: 650 }, 600);
+    }
+
+
+    function validateFileType() {
+        var fileName = document.getElementById("imgInp").value;
+        var idxDot = fileName.lastIndexOf(".") + 1;
+        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+        if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
+            //TO DO
+        } else {
+            $('#DummyButton').trigger('click');
+        }
+    }
+
+
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp").change(function () {
+        readURL(this);
+    });
+
+
+
+    var che = document.getElementById("cer");
+
+    function Verify_Step2(btnClicked) {
+        var $form = $(btnClicked).parents('form');
+        $.ajax({
+            type: "POST",
+            url: $form.attr('action'),
+            // data: $('#client').serialize() + '&' + encodeURIComponent(btnClicked.name15) + '=' + encodeURIComponent(btnClicked.value),
+            data: $form.serialize() + '&' + encodeURIComponent("next") + '=' + encodeURIComponent("step2next"),
+
+            error: function (xhr, status, error) {
+
+            },
+            success: function (response) {
+
+                var bb = '@Session["activetab"]';
+                
+                //if (bb == "1")
+                //{
+                //    $('.active').removeClass('active');
+                //    $('#Step-2').addClass('active');
+                //    profinfo.style.display = "block";
+                //    ScrollWindow();
+                //    basicinfo.style.display = "none";
+                //    upimage.style.display = "none";
+                //    window.stop();
+                //}
+                //else 
+                if (bb == "2") {
+                    //ShowProf();
+                    $('.active').removeClass('active');
+                    $('#Step-3').addClass('active');
+                    profinfo.style.display = "none";
+                    ScrollWindow();
+                    basicinfo.style.display = "none";
+                    upimage.style.display = "block";
+                    window.stop();
+
+                
+                }
+                //else {
+                //      $('.active').removeClass('active');
+                //    $('#Step-2').addClass('active');
+                //    profinfo.style.display = "none";
+                //    ScrollWindow();
+                //    basicinfo.style.display = "none";
+                //    upimage.style.display = "block";
+                //    window.stop();
+                //}
+
+            }
+        });
+         return false;
+    }
+
+      function Verify_Step1(btnClicked) {
+        var $form = $(btnClicked).parents('form');
+        $.ajax({
+            type: "POST",
+            url: $form.attr('action'),
+            // data: $('#client').serialize() + '&' + encodeURIComponent(btnClicked.name15) + '=' + encodeURIComponent(btnClicked.value),
+            data: $form.serialize() + '&' + encodeURIComponent("next") + '=' + encodeURIComponent("step1next"),
+
+            error: function (xhr, status, error) {
+
+            },
+            success: function (response) {
+
+                var bb = '@Session["activetab"]';
+                
+                if (bb == "1") {
+                    //ShowProf();
+                    $('.active').removeClass('active');
+                    $('#Step-2').addClass('active');
+                    profinfo.style.display = "block";
+                    ScrollWindow();
+                    basicinfo.style.display = "none";
+                    upimage.style.display = "none";
+                    window.stop();
+                    
+                    @*@{ 
+                        Session["activetab"] = "0";
+                    }*@
+
+                }
+
+            }
+        });
+         return false;
+    }
+
+
+</script>

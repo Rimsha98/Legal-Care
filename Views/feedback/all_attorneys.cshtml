@@ -1,0 +1,182 @@
+﻿
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+@section register{
+    <link href="~/Content/bootstrap330.min.css" rel="stylesheet" id="bootstrap-css" />
+    <script src="~/Scripts/bootstrap330.min.js"></script>
+    <script src="~/Scripts/jquery1111.min.js"></script>
+    <script src="~/Scripts/jquery191.min.js"></script>
+
+
+    <style>
+        .custom-dropdown {
+            height: 35px;
+            border-radius: 4px;
+            border: 1px solid #CED4DA;
+            padding: 0px 10px;
+            font-size: 14px;
+            width: 100%;
+        }
+
+
+
+        .user-image {
+            height: 35px;
+            width: 35px;
+            object-fit: cover;
+        }
+
+        #Attorneys-List tbody tr td {
+            vertical-align: middle;
+            font-size: 12px;
+            padding: 10px;
+        }
+
+        #Attorneys-List label {
+            color: #AFA939;
+            font-weight: 600;
+        }
+
+        .type {
+            display: block;
+            line-height: 1.4;
+            color: black;
+            font-weight: normal;
+        }
+
+        .head-small {
+            float: left;
+            font-size: 14px;
+            color: black;
+        }
+
+        .table-image {
+            width: 5%;
+        }
+
+        .table-data {
+            text-align: left;
+        }
+
+        .table-button {
+            border: none;
+            background-color: #AFA939;
+            color: #fff;
+            height: 30px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            .table-button:hover {
+                background-color: #ded871;
+            }
+
+            .table-button:focus {
+                outline: none;
+            }
+
+        .table th, .table td {
+            border: none !important;
+        }
+
+        .pagination {
+            margin-right: 15px;
+        }
+
+            .pagination > li > a {
+                color: #222831 !important;
+            }
+
+            .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover,
+            .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+                background-color: #AFA939 !important;
+                border-color: #AFA939 !important;
+                color: #fff !important;
+            }
+    </style>
+}
+
+@model IPagedList<SeedaniLegalCare.Models.Attorney>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{ var attorneycount = Model.TotalItemCount; }
+
+<section>
+    <div class="row pb-4" style="background-color: #F8F9FA;">
+        <div class="col-md-4 mt-2 mb-2">
+
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4 mt-2 mb-2">
+            @using (Html.BeginForm("all_attorneys", "feedback", FormMethod.Post, new { id = "changelist" }))
+            {
+                <select class="custom-dropdown float-right" id="roledd" name="role">
+                    <option selected="selected">-select attorney role</option>
+                    <option value="Criminal Attorney">Criminal Attorneys</option>
+                    <option value="Law Attorney">Law Attorneys</option>
+                    <option value="Tax Attorney">Tax Attorneys</option>
+                </select>
+            }
+
+        </div>
+    </div>
+
+    <div>
+        <div class="sub-content">
+            <div class="container-fluid p-0 m-0">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="head-small m-4"> @attorneycount total Attorneys Found</h1>
+                        <div class="table-responsive">
+                            <table id="Attorneys-List" class="table table-striped">
+                                @foreach (var atr in Model)
+                                {
+                                    <tr>
+                                        <td class="table-image pl-4"><img src="~/images/person_1.jpg" class="user-image rounded rounded-circle" /></td>
+                                        <td class="table-data pl-3">
+                                            <label>@atr.Attorney_Name<span class="type">@atr.Attorney_Role</span></label>
+                                        </td>
+                                       
+                                        <td class="pr-4">
+
+                                            @using (Html.BeginForm("all", "feedback", FormMethod.Post))
+                                            {
+                                                <button id="btn1" name="@atr.Attorney_ID" class="table-button float-right pl-3 pr-3" type="submit">View Feedback</button>
+
+                                            }
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="float-right">
+                    @Html.PagedListPager(Model, page => Url.Action("all_attorneys", new
+                   {
+                       page
+                   }),
+                   new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded })
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<script>
+    $(function () {
+        $('#roledd').change(function () {
+            $('#changelist').submit();
+        });
+    });
+
+</script>

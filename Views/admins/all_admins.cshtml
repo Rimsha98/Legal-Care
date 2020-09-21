@@ -1,0 +1,171 @@
+﻿
+@{
+    ViewBag.Title = "Admins";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+@section register{
+    <link href="~/Content/bootstrap330.min.css" rel="stylesheet" id="bootstrap-css" />
+    <script src="~/Scripts/bootstrap330.min.js"></script>
+    <script src="~/Scripts/jquery1111.min.js"></script>
+    <script src="~/Scripts/jquery191.min.js"></script>
+
+
+    <style>
+        .container {
+            width: 90%;
+            border: 1px solid #ddd;
+        }
+
+        .user-image {
+            height: 50px;
+            width: 50px;
+            object-fit: cover;
+        }
+
+        .user-image-lg {
+            height: 180px;
+            width: 180px;
+            object-fit: cover;
+        }
+
+        .name, .join-date {
+            font-weight: normal;
+            color: black;
+        }
+
+        .join-date {
+            line-height: 1.2;
+            vertical-align: middle;
+        }
+
+
+
+        .email, .attorney-type {
+            color: #ACACAC;
+            display: block;
+            line-height: 1;
+        }
+
+        .attorney-type {
+            color: #AFA939;
+        }
+
+        .expand-icon, .delete-icon2 {
+            background-color: #AFA939;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+        }
+
+            .expand-icon:focus {
+                outline: none;
+            }
+
+            .expand-icon:hover {
+                background-color: #ded871;
+            }
+
+        .footer-content {
+            background-color: #F8F9FA;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            border-top: none;
+            width: 90%;
+            margin: 0 auto;
+        }
+    </style>
+}
+
+<section>
+    <div class="row pb-4 top-section">
+        <div class="col-md-4 mt-2 mb-2">
+            <div class="search-bar">
+                <input type="text" placeholder="enter text to search ..." class="float-left" />
+                <button type="button" class="float-left search-btn"> <i class="fas fa-search"> </i> </button>
+            </div>
+        </div>
+        <div class="col-md-8 mt-2 mb-2 center">
+            <button class="buttons btn1 float-right" onclick="location.href='/admins/new_admin'"> Add new admin</button>
+        </div>
+    </div>
+
+    <div class="sub-content mb-5">
+        <div class="row no-gutters p-5 ">
+            <div class="col-lg-4 mb-3">
+                <div class="container p-5">
+                    <img src="~/images/person_3.jpg" class=" mb-3 user-image rounded rounded-circle" /><br />
+                    <label class="name">Farhan Ahmed Siddiqui<span class="email">farhan2398@hotmail.com</span></label>
+                    <span class="mt-4 attorney-type">Consultation Admin</span>
+                </div>
+                <footer class="p-3 footer-content">
+                    <span class="join-date m-0 p-0 mt-1 float-left">Joined: 28/10/19</span>
+                    <button class="expand-icon float-right" title="view" onclick="location.href='/admins/admin'"><i class="fas fa-arrow-up"></i></button>
+                </footer>
+            </div>
+            <div class="col-lg-4 mb-3 ">
+                <div class="container p-5">
+                    <img src="~/images/person_2.jpg" class=" mb-3 user-image rounded rounded-circle" /><br />
+                    <label class="name">Farhan Ahmed Siddiqui<span class="email">farhan2398@hotmail.com</span></label>
+                    <span class="mt-4 attorney-type">Consultation Admin</span>
+                </div>
+                <footer class="p-3 footer-content">
+                    <span class="join-date m-0 p-0 mt-1 float-left">Joined: 28/10/19</span>
+                    <button class="expand-icon float-right" title="view" onclick="location.href='/admins/admin'"><i class="fas fa-arrow-up"></i></button>
+                </footer>
+            </div>
+            <div class="col-lg-4 mb-3">
+                <div class="container p-5">
+                    <img src="~/images/person_4.jpg" class=" mb-3 user-image rounded rounded-circle" /><br />
+                    <label class="name">Farhan Ahmed Siddiqui<span class="email">farhan2398@hotmail.com</span></label>
+                    <span class="mt-4 attorney-type">Consultation Admin</span>
+                </div>
+                <footer class="p-3 footer-content">
+                    <span class="join-date m-0 p-0 mt-1 float-left">Joined: 28/10/19</span>
+                    <button class="expand-icon float-right" title="view" onclick="location.href='/admins/admin'"><i class="fas fa-arrow-up"></i></button>
+                </footer>
+            </div>
+        </div>
+
+        <div class="row no-gutters pl-5 pr-5 pb-5 ">
+            <div class="col-lg-4 mb-3">
+                <div class="container p-5">
+                    <img src="~/images/person_5.jpg" class=" mb-3 user-image rounded rounded-circle" /><br />
+                    <label class="name">Farhan Ahmed Siddiqui<span class="email">farhan2398@hotmail.com</span></label>
+                    <span class="mt-4 attorney-type">Consultation Admin</span>
+                </div>
+                <footer class="p-3 footer-content">
+                    <span class="join-date m-0 p-0 mt-1 float-left">Joined: 28/10/19</span>
+                    <button class="expand-icon float-right" title="view" onclick="location.href='/admins/admin'"><i class="fas fa-arrow-up"></i></button>
+                </footer>
+            </div>
+            <div class="col-lg-4 mb-3 ">
+                <div class="container p-5">
+                    <img src="~/images/person_6.jpg" class=" mb-3 user-image rounded rounded-circle" /><br />
+                    <label class="name">Farhan Ahmed Siddiqui<span class="email">farhan2398@hotmail.com</span></label>
+                    <span class="mt-4 attorney-type">Consultation Admin</span>
+                </div>
+                <footer class="p-3 footer-content">
+                    <span class="join-date m-0 p-0 mt-1 float-left">Joined: 28/10/19</span>
+                    <button class="expand-icon float-right" title="view" onclick="location.href='/admins/admin'"><i class="fas fa-arrow-up"></i></button>
+                </footer>
+            </div>
+            <div class="col-lg-4 mb-3">
+                <div class="container p-5">
+                    <img src="~/images/person_7.jpg" class=" mb-3 user-image rounded rounded-circle" /><br />
+                    <label class="name">Farhan Ahmed Siddiqui<span class="email">farhan2398@hotmail.com</span></label>
+                    <span class="mt-4 attorney-type">Consultation Admin</span>
+                </div>
+                <footer class="p-3 footer-content">
+                    <span class="join-date m-0 p-0 mt-1 float-left">Joined: 28/10/19</span>
+                    <button class="expand-icon float-right" title="view" onclick="location.href='/admins/admin'"><i class="fas fa-arrow-up"></i></button>
+                </footer>
+            </div>
+        </div>
+    </div>
+</section>

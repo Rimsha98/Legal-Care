@@ -1,0 +1,563 @@
+﻿
+@{
+    ViewBag.Title = "Chat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/e1303a18ed.js" crossorigin="anonymous"></script>
+}
+
+@section HeaderStyling{
+    <script src="https://kit.fontawesome.com/e1303a18ed.js" crossorigin="anonymous"></script>
+    <style>
+
+        .listbgodd {
+            background-color: #FFFEEE;
+        }
+
+        .listbgeven {
+            background-color: #FCFCFC;
+        }
+
+        .img {
+            border-radius: 50%;
+            height: 60px;
+            width: 60px;
+        }
+
+        .headerHeading {
+            color: #fff !important;
+        }
+
+        .clientnameCol {
+            color: #AFA939;
+        }
+
+        .tab_button {
+            height: 40px;
+            line-height: 16px;
+        }
+
+        .searchbar {
+            border-radius: 0rem 0rem 0rem 0rem;
+            height: 40px;
+            border: 1px solid gray;
+        }
+
+
+        .scroll {
+            overflow: scroll;
+        }
+
+            .scroll::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            .scroll::-webkit-scrollbar-thumb {
+                background-color: #AFA939;
+                border: 1px solid #AFA939;
+            }
+
+        .userlist {
+            height: 800px;
+            background-color: #ffffff;
+        }
+    </style>
+}
+
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate pb-5 text-center">
+                <h1 class="mb-3 bread">Messages</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="@Url.Action("index","Home")">Consultation <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="@Url.Action("blog","Home")">Messages <i class="ion-ios-arrow-forward"></i></a></span> <span>Free Consultation<i class="ion-ios-arrow-forward"></i></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section ftco-degree-bg bg-light">
+    <div class="container p-0">
+
+
+
+        <div class="row mt-2 p-0 no-gutters w-100 ">
+
+            <!--- Section 1: Messages -->
+            <div class="col-12 form-section  w-100 p-2" style=" background:white;" id="Section-1">
+
+                <div class="row mt-0 p-0 pt-3  no-gutters w-100 ">
+                    <div class="col-4" style="width: auto;overflow: hidden;">
+
+                        <input type="text" class="custom-control p-2 searchbar" style="width:80%; float:left;" placeholder="Client search">
+                        <button class="btn custom-control p-2 searchbar" style="width:20%; float:left;text-align:center; " type="button">
+                            <span>  <i class="fa fa-search " style="display:inline-block"></i></span>
+                        </button>
+
+
+
+                    </div>
+                    <div class="col-4 pl-2 pt-2 float-left" style="width: auto;overflow: hidden;">
+                        <h5>Rimsha Ishtiaq</h5>
+                    </div>
+                    <div class="col-4 pr-2 pt-2 " style="width: auto;overflow: hidden;">
+                        <label class="float-right" style="font-size:12px;color:darkgray;">Last Deliverd-06/April/2019</label>
+                    </div>
+                </div>
+
+                <div class="row mt-0 p-0  pb-3 no-gutters w-100 ">
+
+
+
+                    <div class="col-4 scroll sidebar ftco-animate userlist">
+
+                        <!--Users List-->
+                        <div>
+                            <div class="list-item p-1 w-100 mt-1 mb-1 listbgodd" style="display:inline-block">
+                                <div class="row mt-0 no-gutters w-100">
+
+                                    <img class="img" src="~/images/person_6.jpg" alt="Avatar">
+                                    <div class="pl-2 pt-1 " id="userlist" name="userlist">
+                                        <label style="font-size:16px;line-height:12px;">Rimsha Ishtiaq</label>
+                                        <h6>something importing</h6>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="list-item p-1 w-100 mt-1 mb-1 listbgeven">
+                                <div class="row mt-0 no-gutters w-100">
+
+                                    <img class="img" src="/images/person_1.jpg" alt="Avatar">
+                                    <div class="pl-2 pt-1" id="userlist" name="userlist">
+                                        <label style="font-size:16px;line-height:12px;">Asma Riaz</label>
+                                        <h6>something importing</h6>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="list-item p-1 w-100 mt-1 mb-1 listbgodd">
+                                <div class="row mt-0 no-gutters w-100">
+
+                                    <img class="img" src="/images/person_2.jpg" alt="Avatar">
+                                    <div class="pl-2 pt-1">
+                                        <label style="font-size:16px;line-height:12px;">Fizza Naqvi</label>
+                                        <h6>something importing</h6>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="list-item p-1 w-100 mt-1 mb-1 listbgeven">
+                                <div class="row mt-0 no-gutters w-100">
+
+                                    <img class="img" src="/images/person_4.jpg" alt="Avatar">
+                                    <div class="pl-2 pt-1">
+                                        <label style="font-size:16px;line-height:12px;">Syeda Iqra Waseem</label>
+                                        <h6>something importing</h6>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="list-item p-1 w-100 mt-1 mb-1 listbgodd">
+                                <div class="row mt-0 no-gutters w-100">
+
+                                    <img class="img" src="/images/person_5.jpg" alt="Avatar">
+                                    <div class="pl-2 pt-1">
+                                        <label style="font-size:16px;line-height:12px;">Sidra Nadeem</label>
+                                        <h6>something importing</h6>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="list-item p-1 w-100 mt-1 mb-1 listbgeven">
+                                <div class="row mt-0 no-gutters w-100">
+
+                                    <img class="img" src="/images/person_3.jpg" alt="Avatar">
+                                    <div class="pl-2 pt-1">
+                                        <label style="font-size:16px;line-height:12px;">Sarim Ishtiaq</label>
+                                        <h6>something importing</h6>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="list-item p-1 w-100 mt-1 mb-1 listbgodd">
+                                <div class="row mt-0 no-gutters w-100">
+
+                                    <img class="img" src="~/images/person_6.jpg" alt="Avatar">
+                                    <div class="pl-2 pt-1">
+                                        <label style="font-size:16px;line-height:12px;">Rimsha Ishtiaq</label>
+                                        <h6>something importing</h6>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="list-item p-1 w-100 mt-1 mb-1 listbgeven">
+                                <div class="row mt-0 no-gutters w-100">
+
+                                    <img class="img" src="/images/person_1.jpg" alt="Avatar">
+                                    <div class="pl-2 pt-1">
+                                        <label style="font-size:16px;line-height:12px;">Asma Riaz</label>
+                                        <h6>something importing</h6>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="list-item p-1 w-100 mt-1 mb-1 listbgodd">
+                                <div class="row mt-0 no-gutters w-100">
+
+                                    <img class="img" src="/images/person_2.jpg" alt="Avatar">
+                                    <div class="pl-2 pt-1">
+                                        <label style="font-size:16px;line-height:12px;">Fizza Naqvi</label>
+                                        <h6>something importing</h6>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="list-item p-1 w-100 mt-1 mb-1 listbgeven">
+                                <div class="row mt-0 no-gutters w-100">
+
+                                    <img class="img" src="/images/person_4.jpg" alt="Avatar">
+                                    <div class="pl-2 pt-1">
+                                        <label style="font-size:16px;line-height:12px;">Syeda Iqra Waseem</label>
+                                        <h6>something importing</h6>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="list-item p-1 w-100 mt-1 mb-1 listbgodd">
+                                <div class="row mt-0 no-gutters w-100">
+
+                                    <img class="img" src="/images/person_5.jpg" alt="Avatar">
+                                    <div class="pl-2 pt-1">
+                                        <label style="font-size:16px;line-height:12px;">Sidra Nadeem</label>
+                                        <h6>something importing</h6>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="list-item p-1 w-100 mt-1 mb-1 listbgeven">
+                                <div class="row mt-0 no-gutters w-100">
+
+                                    <img class="img" src="/images/person_3.jpg" alt="Avatar">
+                                    <div class="pl-2 pt-1">
+                                        <label style="font-size:16px;line-height:12px;">Sarim Ishtiaq</label>
+                                        <h6>something importing</h6>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-8 scroll userlist pl-2 pr-2">
+                        <!--List Item Left-->
+                        <div class="list-item p-1 w-100 mt-1">
+                            <div class="row mt-0 no-gutters w-75 ">
+
+                                <div class="col-2 ">
+
+                                    <img class="img float-left " src="~/images/person_6.jpg">
+                                </div>
+                                <div class="col-10 pl-2 pt-1">
+                                    <div style="border-radius: 0.25rem 0.25rem 0.25rem 0.25rem;" class="m-1 p-1 float-left bg-light">
+                                        <p style="font-size:14px;line-height:12px;color:black">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <!--List Item right-->
+                        <div class="list-item p-1 w-100 mt-1">
+
+                            <div class="row mt-0 no-gutters w-75 float-right  ">
+                                <div class="col-10 pl-2 ">
+                                    <div style="border-radius: 0.25rem 0.25rem 0.25rem 0.25rem; background-color:gray" class="m-1 p-1 float-right">
+                                        <p style="font-size: 14px; line-height: 12px;color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora</p>
+                                    </div>
+
+                                </div>
+                                <div class="col-2">
+
+                                    <img class="img float-right" src="~/images/person_2.jpg">
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!--List Item Left-->
+                        <div class="list-item p-1 w-100 mt-1">
+                            <div class="row mt-0 no-gutters w-75 ">
+
+                                <div class="col-2 ">
+
+                                    <img class="img float-left " src="~/images/person_6.jpg">
+                                </div>
+                                <div class="col-10 pl-2 pt-1">
+                                    <div style="border-radius: 0.25rem 0.25rem 0.25rem 0.25rem;" class="m-1 p-1 float-left bg-light">
+                                        <p style="font-size:14px;line-height:12px;color:black">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <!--List Item right-->
+                        <div class="list-item p-1 w-100 mt-1">
+
+                            <div class="row mt-0 no-gutters w-75 float-right  ">
+                                <div class="col-10 pl-2 ">
+                                    <div style="border-radius: 0.25rem 0.25rem 0.25rem 0.25rem; background-color:gray" class="m-1 p-1 float-right">
+                                        <p style="font-size: 14px; line-height: 12px;color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora</p>
+                                    </div>
+
+                                </div>
+                                <div class="col-2">
+
+                                    <img class="img float-right" src="~/images/person_2.jpg">
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!--List Item Left-->
+                        <div class="list-item p-1 w-100 mt-1">
+                            <div class="row mt-0 no-gutters w-75 ">
+
+                                <div class="col-2 ">
+
+                                    <img class="img float-left " src="~/images/person_6.jpg">
+                                </div>
+                                <div class="col-10 pl-2 pt-1">
+                                    <div style="border-radius: 0.25rem 0.25rem 0.25rem 0.25rem;" class="m-1 p-1 float-left bg-light">
+                                        <p style="font-size:14px;line-height:12px;color:black">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <!--List Item right-->
+                        <div class="list-item p-1 w-100 mt-1">
+
+                            <div class="row mt-0 no-gutters w-75 float-right  ">
+                                <div class="col-10 pl-2 ">
+                                    <div style="border-radius: 0.25rem 0.25rem 0.25rem 0.25rem; background-color:gray" class="m-1 p-1 float-right">
+                                        <p style="font-size: 14px; line-height: 12px;color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora</p>
+                                    </div>
+
+                                </div>
+                                <div class="col-2">
+
+                                    <img class="img float-right" src="~/images/person_2.jpg">
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!--List Item Left-->
+                        <div class="list-item p-1 w-100 mt-1">
+                            <div class="row mt-0 no-gutters w-75 ">
+
+                                <div class="col-2 ">
+
+                                    <img class="img float-left " src="~/images/person_6.jpg">
+                                </div>
+                                <div class="col-10 pl-2 pt-1">
+                                    <div style="border-radius: 0.25rem 0.25rem 0.25rem 0.25rem;" class="m-1 p-1 float-left bg-light">
+                                        <p style="font-size:14px;line-height:12px;color:black">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <!--List Item right-->
+                        <div class="list-item p-1 w-100 mt-1">
+
+                            <div class="row mt-0 no-gutters w-75 float-right  ">
+                                <div class="col-10 pl-2 ">
+                                    <div style="border-radius: 0.25rem 0.25rem 0.25rem 0.25rem; background-color:gray" class="m-1 p-1 float-right">
+                                        <p style="font-size: 14px; line-height: 12px;color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora</p>
+                                    </div>
+
+                                </div>
+                                <div class="col-2">
+
+                                    <img class="img float-right" src="~/images/person_2.jpg">
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!--List Item Left-->
+                        <div class="list-item p-1 w-100 mt-1">
+                            <div class="row mt-0 no-gutters w-75 ">
+
+                                <div class="col-2 ">
+
+                                    <img class="img float-left " src="~/images/person_6.jpg">
+                                </div>
+                                <div class="col-10 pl-2 pt-1">
+                                    <div style="border-radius: 0.25rem 0.25rem 0.25rem 0.25rem;" class="m-1 p-1 float-left bg-light">
+                                        <p style="font-size:14px;line-height:12px;color:black">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <!--List Item right-->
+                        <div class="list-item p-1 w-100 mt-1">
+
+                            <div class="row mt-0 no-gutters w-75 float-right  ">
+                                <div class="col-10 pl-2 ">
+                                    <div style="border-radius: 0.25rem 0.25rem 0.25rem 0.25rem; background-color:gray" class="m-1 p-1 float-right">
+                                        <p style="font-size: 14px; line-height: 12px;color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora</p>
+                                    </div>
+
+                                </div>
+                                <div class="col-2">
+
+                                    <img class="img float-right" src="~/images/person_2.jpg">
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!--List Item Left-->
+                        <div class="list-item p-1 w-100 mt-1">
+                            <div class="row mt-0 no-gutters w-75 ">
+
+                                <div class="col-2 ">
+
+                                    <img class="img float-left " src="~/images/person_6.jpg">
+                                </div>
+                                <div class="col-10 pl-2 pt-1">
+                                    <div style="border-radius: 0.25rem 0.25rem 0.25rem 0.25rem;" class="m-1 p-1 float-left bg-light">
+                                        <p style="font-size:14px;line-height:12px;color:black">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <!--List Item right-->
+                        <div class="list-item p-1 w-100 mt-1">
+
+                            <div class="row mt-0 no-gutters w-75 float-right  ">
+                                <div class="col-10 pl-2 ">
+                                    <div style="border-radius: 0.25rem 0.25rem 0.25rem 0.25rem; background-color:gray" class="m-1 p-1 float-right">
+                                        <p style="font-size: 14px; line-height: 12px;color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora</p>
+                                    </div>
+
+                                </div>
+                                <div class="col-2">
+
+                                    <img class="img float-right" src="~/images/person_2.jpg">
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</section>
+
+
+<section class="ftco-section ftco-no-pt ftco-no-pb">
+    <div class="container">
+        <div class="row d-flex justify-content-end">
+            <div class="col-md-8 py-4 px-md-4 bg-primary">
+                <div class="row">
+                    <div class="col-md-6 ftco-animate d-flex align-items-center">
+                        <h2 class="mb-0" style="color:white; font-size: 24px;">Subcribe to our Newsletter</h2>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center">
+                        <form action="#" class="subscribe-form">
+                            <div class="form-group d-flex">
+                                <input type="text" class="form-control" placeholder="Enter email address">
+                                <input type="submit" value="Subscribe" class="submit px-3">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+
+
+    $(window).resize(function() {
+
+  if ($(this).width() < 1024) {
+
+      $('#userlist').hide();
+
+
+
+  } else {
+
+    $('#userlist').show();
+
+    }
+
+    });
+
+
+
+
+</script>

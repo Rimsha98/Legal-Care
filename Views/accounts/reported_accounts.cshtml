@@ -1,0 +1,330 @@
+﻿
+@{
+    ViewBag.Title = "Admin_AccountReport";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+@section HeaderStyling{
+    <script src="https://kit.fontawesome.com/e1303a18ed.js" crossorigin="anonymous"></script>
+
+    <style>
+        .active {
+            background-color: #AFA939;
+            color: #fff;
+            cursor: default;
+        }
+
+            .active:hover {
+                background-color: #AFA939;
+            }
+
+
+        .headerHeading {
+            color: #fff !important;
+        }
+
+        .errspan {
+            float: right;
+            margin-right: 8px;
+            margin-top: -32px;
+            position: relative;
+            z-index: 2;
+            color: red;
+            cursor: pointer;
+            display: none;
+        }
+
+
+        input.input-validation-error {
+            border: 0.083em solid red;
+        }
+
+        select.input-validation-error {
+            border: 0.083em solid red;
+        }
+
+
+        /* Bootstrap 4 text input with search icon */
+
+        .has-search .form-control {
+            padding-left: 2.375rem;
+        }
+
+        .has-search .form-control-feedback {
+            position: absolute;
+            z-index: 2;
+            display: block;
+            width: 2.375rem;
+            height: 2.375rem;
+            line-height: 2.375rem;
+            text-align: center;
+            pointer-events: none;
+            color: #aaa;
+        }
+
+        .img {
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+        }
+
+        .pera {
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        .link {
+            color: #afa939;
+        }
+
+        .redboarder {
+            border: 1px solid red;
+        }
+
+        .datespan {
+            display: block;
+            color: #808080;
+            text-align: left;
+        }
+
+        label {
+            line-height: 1.2;
+        }
+
+        .circular_btn button {
+            border-radius: 50%;
+            border: 1px solid transparent;
+            height: 30px;
+            width: 30px;
+            margin: 3px;
+        }
+
+        .circular_btn i {
+            color: white;
+        }
+
+        .countLable {
+            font-size: 16px;
+            color: black;
+            margin-top: 2px;
+            margin-bottom: 2px;
+            display: block;
+        }
+    </style>
+}
+
+
+<section>
+    <div class="row pb-2" style="background-color: #F8F9FA;">
+        <div class="col-md-4 mt-2 mb-2">
+            <div class="search-bar">
+                <input type="text" placeholder="enter text to search ..." class="float-left" />
+                <button type="button" class="float-left search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+        <div class="col-md-8 mt-2 mb-2 center">
+            <button class="buttons" id="client" onclick="ShowClientList()">Client Account</button>
+            <button class="buttons" id="attorney" onclick="ShowAttorneylist()">Attorney Account</button>
+        </div>
+    </div>
+
+    <!--Client List-->
+    <div class="sub-content" id="clientlist">
+        <div class="row  no-gutters ">
+            <label class="float-left countLable  m-4">7 Accounts have been reported</label>
+        </div>
+
+
+        <!--List itme 1-->
+        <div class=" list-item p-4">
+            <div class="row  no-gutters  ">
+                <div class="col-lg-6 ">
+                    <img class="img float-left" src="~/images/person_7.jpg" />
+                    <label class="float-left pl-3 mt-1 " style="color: black;text-align:left;">Ayesha Khalid<span class="datespan">rimshaa.ishtiaq98@gmail.com</span></label>
+
+                </div>
+
+                <div class="col-lg-6  circular_btn">
+                    <button type="button" data-toggle="modal" data-target="#deletemodel" class="float-right" data-backdrop="static" data-keyboard="false" style="background-color:red"><i class="fa fa-times"></i></button>
+
+
+                    <button type="button" class="float-right mr-4 pb-3" data-toggle="modal" data-target="#blockmodel" style="background-color:transparent"><i class="fa fa-ban" style="font-size:30px;color:black;"></i></button>
+
+
+                </div>
+            </div>
+        </div>
+        <!--List itme 2-->
+        <div class="list-item p-4" style="background-color: #F8F9FA;">
+            <div class="row  no-gutters  ">
+                <div class="col-lg-6 ">
+                    <img class="img float-left" src="~/images/person_7.jpg" />
+                    <label class="float-left pl-3 mt-1 " style="color: black;text-align:left;">Ayesha Khalid<span class="datespan">rimshaa.ishtiaq98@gmail.com</span></label>
+
+                </div>
+
+                <div class="col-lg-6  circular_btn">
+                    <button type="button" data-toggle="modal" data-target="#deletemodel" class="float-right" data-backdrop="static" data-keyboard="false" style="background-color:red"><i class="fa fa-times"></i></button>
+
+                    <button type="button" class="float-right mr-4 pb-3" data-toggle="modal" data-target="#blockmodel" style="background-color:transparent"><i class="fa fa-ban" style="font-size:30px;color:black;"></i></button>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--Attorney Report-->
+    <div class="sub-content" id="attorneylist">
+        <div class="row  no-gutters ">
+            <label class="float-left countLable  m-4">9 Accounts have been reported</label>
+        </div>
+
+
+        <!--List itme 1-->
+        <div class=" list-item p-4">
+            <div class="row  no-gutters  ">
+                <div class="col-lg-6 ">
+                    <img class="img float-left" src="~/images/person_7.jpg" />
+                    <label class="float-left pl-3 mt-1 " style="color: black;text-align:left;">Ayesha Khalid<span class="datespan">Criminal Attorney</span></label>
+
+                </div>
+
+                <div class="col-lg-6  circular_btn">
+                    <button type="button" data-toggle="modal" data-target="#deletemodel" class="float-right" data-backdrop="static" data-keyboard="false" style="background-color:red"><i class="fa fa-times"></i></button>
+
+
+                    <button type="button" class="float-right mr-4 pb-3" data-toggle="modal" data-target="#blockmodel" style="background-color:transparent"><i class="fa fa-ban" style="font-size:30px;color:black;"></i></button>
+
+
+                </div>
+            </div>
+        </div>
+        <!--List itme 2-->
+        <div class="list-item p-4" style="background-color: #F8F9FA;">
+            <div class="row  no-gutters  ">
+                <div class="col-lg-6 ">
+                    <img class="img float-left" src="~/images/person_7.jpg" />
+                    <label class="float-left pl-3 mt-1 " style="color: black;text-align:left;">Rimsha Ishtiaq<span class="datespan">Finance Attorney</span></label>
+
+                </div>
+
+                <div class="col-lg-6  circular_btn">
+                    <button type="button" data-toggle="modal" data-target="#deletemodel" class="float-right" data-backdrop="static" data-keyboard="false" style="background-color:red"><i class="fa fa-times"></i></button>
+
+                    <button type="button" class="float-right mr-4 pb-3" data-toggle="modal" data-target="#blockmodel" style="background-color:transparent"><i class="fa fa-ban" style="font-size:30px;color:black;"></i></button>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="deletemodel" tabindex="-1" role="dialog" aria-labelledby="deletemodelCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header circular_btn">
+                    <h5 class="modal-title" id="deletemodelLongTitle" style="color:red;"><b>Delete Request</b></h5>
+                    <button type="button" class="float-right " data-dismiss="modal" style="background-color:red"><i class="fa fa-times fa-lg"></i></button>
+
+                </div>
+                <div class="modal-body m-3" style="text-align:center" id="step1">
+                    <p style="color:black">Are you sure you want to delete this request?</p>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" style="background-color:black;" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="blockmodel" tabindex="-1" role="dialog" aria-labelledby="blockmodelCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header circular_btn">
+                    <h5 class="modal-title" id="blockmodelLongTitle" style="color:red;"><b>Block User</b></h5>
+                    <button type="button" class="float-right " data-dismiss="modal" style="background-color:red"><i class="fa fa-times fa-lg"></i></button>
+
+                </div>
+                <div class="modal-body m-3" style="text-align:center" id="step1">
+                    <p style="color:black">Are you sure you want to block this user?</p>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" style="background-color:black;" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Block</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</section>
+<script>
+    $(function () {
+        ScrollWindow();
+        var b = document.getElementById("clientlist");
+        var a = document.getElementById("attorneylist");
+        b.style.display = "block";
+        a.style.display = "none";
+        $('.active').removeClass('active');
+        $('#client').addClass('active');
+    });
+
+    var clientlist = document.getElementById("clientlist");
+    var attorneylist = document.getElementById("attorneylist");
+
+    function ShowClientList() {
+        if (clientlist.style.display == "none") {
+            $('.active').removeClass('active');
+            $('#client').addClass('active');
+            clientlist.style.display = "block";
+            ScrollWindow();
+            attorneylist.style.display = "none";
+
+        }
+
+        else {
+            $('.active').removeClass('active');
+            $('#client').addClass('active');
+            clientlist.style.display = "block";
+            ScrollWindow();
+            attorneylist.style.display = "none";
+
+        }
+    }
+
+
+    function ShowAttorneylist() {
+        if (attorneylist.style.display == "none") {
+            $('.active').removeClass('active');
+            $('#attorney').addClass('active');
+            attorneylist.style.display = "block";
+            ScrollWindow();
+            clientlist.style.display = "none";
+        }
+
+        else {
+            $('.active').removeClass('active');
+            $('#attorney').addClass('active');
+            attorneylist.style.display = "block";
+            ScrollWindow();
+            clientlist.style.display = "none";
+
+        }
+    }
+
+
+    function ScrollWindow() {
+        $("html, body").animate({ scrollTop: 650 }, 600);
+    }
+
+</script>

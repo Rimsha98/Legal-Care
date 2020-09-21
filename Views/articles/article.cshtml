@@ -1,0 +1,311 @@
+﻿@model SeedaniLegalCare.Models.Article
+
+@{
+    ViewBag.Title = "Article";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderStyling{
+    <script src="https://kit.fontawesome.com/e1303a18ed.js" crossorigin="anonymous"></script>
+    <style>
+
+
+
+        .headerHeading {
+            color: #fff !important;
+        }
+
+        .errspan {
+            float: right;
+            margin-right: 8px;
+            margin-top: -32px;
+            position: relative;
+            z-index: 2;
+            color: red;
+            cursor: pointer;
+            display: none;
+        }
+
+
+        input.input-validation-error {
+            border: 0.083em solid red;
+        }
+
+        select.input-validation-error {
+            border: 0.083em solid red;
+        }
+
+
+        /* Bootstrap 4 text input with search icon */
+
+        .has-search .form-control {
+            padding-left: 2.375rem;
+        }
+
+        .has-search .form-control-feedback {
+            position: absolute;
+            z-index: 2;
+            display: block;
+            width: 2.375rem;
+            height: 2.375rem;
+            line-height: 2.375rem;
+            text-align: center;
+            pointer-events: none;
+            color: #aaa;
+        }
+
+        .img {
+            border-radius: 50%;
+            height: 70px;
+            width: 70px;
+        }
+
+        .pera {
+            font-size: 20px;
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        .link {
+            color: #afa939;
+        }
+    </style>
+}
+
+<section id="without-buttons" class="hero-wrap hero-wrap-2" style="display: none; background-image: url('/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate pb-5 text-center">
+                <h1 class="mb-3 bread">Full Article</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="@Url.Action("index","Home")">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Articles <i class="ion-ios-arrow-forward"></i></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="with-buttons" class="hero-wrap hero-wrap-2" style="display: none; background-image: url('/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="slider-text">
+            <div class="row no-gutters  align-items-center justify-content-start">
+
+                <div class="col-6" style="height:220px;">
+
+
+                </div>
+
+            </div>
+            <div class="row no-gutters   align-items-center justify-content-start">
+
+                <div class="col-md-6 ftco-animate">
+
+                    <h3 class="mb-4 headerHeading">You can write your own articles<br /> and push them to the articles feed.</h3>
+                    <p><a href="#" class="btn btn-primary  py-2 px-4" style="width:40%;">Compose Articles</a></p>
+                    <p><a href="@Url.Action("Article","Home")" class="btn btn-primary py-2 px-4" style="width:40%;">My Articles</a></p>
+
+                </div>
+
+            </div>
+            <div class="row no-gutters align-items-end   justify-content-center pt-5">
+
+                <div class="col-md-9 ftco-animate pb-5 text-center">
+                    <h1 class="mb-3 bread">Articles</h1>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="@Url.Action("index","Home")">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Article <i class="ion-ios-arrow-forward"></i></span></p>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+@if (Session["AccountType"] == "client")
+{
+    <script>
+        var buttons = document.getElementById("without-buttons");
+        var nobuttons = document.getElementById("with-buttons");
+
+        buttons.style.display = "block";
+        nobuttons.style.display = "none";
+    </script>
+}
+else if (Session["AccountType"] == null)
+{
+    <script>
+        var buttons = document.getElementById("without-buttons");
+        var nobuttons = document.getElementById("with-buttons");
+
+        buttons.style.display = "block";
+        nobuttons.style.display = "none";
+    </script>
+}
+else if (Session["AccountType"] == "attorney")
+{
+
+    <script>
+        var buttons = document.getElementById("without-buttons");
+        var nobuttons = document.getElementById("with-buttons");
+
+        buttons.style.display = "none";
+        nobuttons.style.display = "block";
+    </script>
+}
+
+<section class="p-2 mt-5">
+
+    <div class="container">
+        <div class="row">
+            <h4>@Model.Title</h4>
+        </div>
+        <div class="row">
+            <img class="img" src="/images/person_1.jpg" alt="Avatar">
+            <div class="pl-3">
+                <h5 class="mt-1">Written by @Model.Author</h5>
+                <h6 class="mt-1">@Model.Date</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div style="text-align:left">
+                @Html.Raw(HttpUtility.HtmlDecode(@Model.Content))
+            </div>
+        </div>
+        <div class="row">
+            <h6>Published by Seedani LegalCare, 28 Febuary 2020</h6>
+        </div>
+
+        <div class="row bg-light mt-2">
+            <div class="col text-center">
+                <div class="block-27">
+                    <h3 style="font-weight:bold" class="align-content-center">more from the author</h3>
+
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light">
+
+            <div class="row d-flex px-3">
+                <div class="col-md-4 d-flex ftco-animate p-4 ">
+
+                    <div class="list-item">
+                        <div class="row ">
+                            <div class="col-xs-4">
+                                <div class="blog-entry justify-content-end">
+                                    <div class="text px-4 py-4">
+                                        <h3 class="heading mb-0"><a href="#">All you want to know about industrial laws</a></h3>
+                                    </div>
+                                    <a href="@Url.Action("ReadArticle","Home")" class="block-20" style="background-image: url('/images/image_1.jpg');">
+                                    </a>
+                                    <div class="text p-4 float-right d-block">
+                                        <div class="topper d-flex align-items-center">
+                                            <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                                <span class="day">18</span>
+                                            </div>
+                                            <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                                <span class="yr">2019</span>
+                                                <span class="mos">October</span>
+                                            </div>
+                                        </div>
+                                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                                        <p><a href="#" class="btn btn-primary">Read more</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex ftco-animate p-4 ">
+
+                    <div class="list-item">
+                        <div class="row ">
+                            <div class="col-xs-4">
+                                <div class="blog-entry justify-content-end">
+                                    <div class="text px-4 py-4">
+                                        <h3 class="heading mb-0"><a href="#">All you want to know about industrial laws</a></h3>
+                                    </div>
+                                    <a href="@Url.Action("ReadArticle","Home")" class="block-20" style="background-image: url('/images/image_1.jpg');">
+                                    </a>
+                                    <div class="text p-4 float-right d-block">
+                                        <div class="topper d-flex align-items-center">
+                                            <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                                <span class="day">18</span>
+                                            </div>
+                                            <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                                <span class="yr">2019</span>
+                                                <span class="mos">October</span>
+                                            </div>
+                                        </div>
+                                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                                        <p><a href="#" class="btn btn-primary">Read more</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex ftco-animate p-4">
+
+                    <div class="list-item">
+                        <div class="row ">
+                            <div class="col-xs-4">
+                                <div class="blog-entry justify-content-end">
+                                    <div class="text px-4 py-4">
+                                        <h3 class="heading mb-0"><a href="#">All you want to know about industrial laws</a></h3>
+                                    </div>
+                                    <a href="@Url.Action("ReadArticle","Home")" class="block-20" style="background-image: url('/images/image_1.jpg');">
+                                    </a>
+                                    <div class="text p-4 float-right d-block">
+                                        <div class="topper d-flex align-items-center">
+                                            <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                                <span class="day">18</span>
+                                            </div>
+                                            <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                                <span class="yr">2019</span>
+                                                <span class="mos">October</span>
+                                            </div>
+                                        </div>
+                                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                                        <p><a href="#" class="btn btn-primary">Read more</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+    </div>
+</section>
+<section class="ftco-section ftco-no-pt ftco-no-pb bg-light">
+    <div class="container">
+        <div class="row d-flex justify-content-end">
+            <div class="col-md-8 py-4 px-md-4 bg-primary">
+                <div class="row">
+                    <div class="col-md-6 ftco-animate d-flex align-items-center">
+                        <h2 class="mb-0" style="color:white; font-size: 24px;">Subcribe to our Newsletter</h2>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center">
+                        <form action="#" class="subscribe-form">
+                            <div class="form-group d-flex">
+                                <input type="text" class="form-control" placeholder="Enter email address">
+                                <input type="submit" value="Subscribe" class="submit px-3">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

@@ -1,0 +1,265 @@
+﻿
+@{
+    ViewBag.Title = "Networks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section view{
+    <link href="~/Content/feedback.css" rel="stylesheet" />
+    <style>
+        .type, .connection-date {
+            display: block;
+            line-height: 1;
+            color: black;
+            font-weight: normal;
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .connection-date {
+            color: #ACACAC;
+            font-size: 12px;
+        }
+
+        .table-image {
+            width: 5%;
+        }
+
+        .table-data {
+            text-align: left;
+        }
+
+        .table-button {
+            border: none;
+            background-color: #AFA939;
+            color: #fff;
+            height: 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+            .table-button:hover {
+                background-color: #ded871;
+            }
+
+            .table-button:focus {
+                outline: none;
+            }
+
+        .table th, .table td {
+            border: none;
+        }
+
+        table tr td {
+            border: 1px solid red !important;
+        }
+
+        .sub-content {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+        }
+
+        .name {
+            color: #AFA939;
+            font-weight: 600;
+            line-height: 1;
+        }
+    </style>
+}
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate pb-5 text-center">
+                <h1 class="mb-3 bread">Feedback</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="@Url.Action("index", "home")">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Feedback</span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@model IPagedList<SeedaniLegalCare.Models.Network>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{ var totalnetworks = Model.TotalItemCount; }
+
+<section>
+    <div class="sub-content" style="width: 93%; margin: 0 auto;">
+        <div class="container-fluid p-0 m-0">
+            <div class="row no-gutters">
+                <div class="col-lg-8 pb-4 pt-4">
+                    
+                </div>
+                <div class="col-lg-4 pb-4 pt-lg-4">
+                    @using (Html.BeginForm("attorneys", "feedback", FormMethod.Get))
+                    {
+                        <div class="search-bar">
+                            <input type="text" name="search" id="search" placeholder="enter text to search ..." class="float-left" />
+                            <button type="submit" value="search" class="float-left search-btn"><i class="fas fa-search"></i></button>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="row no-gutters border" style="background-color: #F8F9FA">
+                <div class="pt-2 pl-4 pr-4 pb-2 w-100">
+                    @totalnetworks networks found
+                </div>
+            </div>
+            <div class="row no-gutters border mb-5">
+                @{ int i = 0; }
+                @foreach (var network in Model)
+                {
+                    i = i + 1;
+                    if (i % 2 != 0)
+                    {
+                        <div class="col-12 p-3">
+                            <div class="float-left">
+                                <img src="~/images/person_1.jpg" class="user-image rounded rounded-circle m-0" style="vertical-align: top; " />
+                                <label class="name pl-3 pr-3">
+                                    @network.Attorney_Name
+                                    <span class="type mt-1">@network.Attorney_Role</span>
+                                    <span class="connection-date mt-1">Connected on: @network.Connection_Date</span>
+                                </label>
+                            </div>
+                            <div class="float-right">
+                                <button data-id="@network.Attorney_ID" data-toggle="modal" data-target="#feedbackmodel" class="table-button mt-3 mb-3 float-right pl-3 pr-3">Give feedback</button>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-12 p-3" style="background-color: #fcfcfc; ">
+                            <div class="float-left">
+                                <img src="~/images/person_1.jpg" class="user-image rounded rounded-circle m-0" style="vertical-align: top; " />
+                                <label class="name pl-3 pr-3">
+                                    @network.Attorney_Name
+                                    <span class="type mt-1">@network.Attorney_Role</span>
+                                    <span class="connection-date mt-1">Connected on: @network.Connection_Date</span>
+                                </label>
+                            </div>
+                            <div class="float-right">
+                                <button data-id="@network.Attorney_ID" data-toggle="modal" data-target="#feedbackmodel" class="table-button float-right mt-3 mb-3 pl-3 pr-3">Give feedback</button>
+                            </div>
+                        </div>
+                    }
+
+
+                }
+            </div>
+
+
+        </div>
+
+        <!-- Pagination -->
+        <div>
+            @Html.PagedListPager(Model, page => Url.Action("attorneys", new
+            {
+                page,
+                search = Request.QueryString["search"],
+            }),
+            new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded })
+        </div>
+
+    </div>
+</section>
+
+<div class="modal fade" id="feedbackmodel" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "submitfeedback" }))
+    {
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title float-left">Give Feedback</h1>
+                    <button class="close-modal-sm float-right" title="Close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                </div>
+                <div id="sendfeedback">
+                    <div class="modal-body center" style="overflow: hidden;">
+                        <textarea id="fbtxt" name="fbtxt" class="form-control" placeholder="enter your feedback here..." rows="5"></textarea>
+                        <div style="width: 100%;">
+                            <p class="float-left p-2 " id="ratehead">Rate this attorney: </p>
+
+                            <div class=" float-left rate p-0 m-0">
+                                <input type="radio" id="star5" name="rate" value="5" />
+                                <label for="star5" title="5 Stars"></label>
+                                <input type="radio" id="star4" name="rate" value="4" />
+                                <label for="star4" title="4 Stars"></label>
+                                <input type="radio" id="star3" name="rate" value="3" />
+                                <label for="star3" title="3 Stars"></label>
+                                <input type="radio" id="star2" name="rate" value="2" />
+                                <label for="star2" title="2 Stars"></label>
+                                <input type="radio" id="star1" name="rate" value="1" />
+                                <label for="star1" title="1 Star"></label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+
+
+                        <button type="button" class="btn btn-secondary cancel-button" data-dismiss="modal">Cancel</button>
+
+                        <button id="send" type="submit" class="btn btn-primary proceed-button">Send</button>
+                    </div>
+                </div>
+
+                <div id="feedbacksent" style="display: none;">
+                    <div class="modal-body mt-3 center" style="text-align: center">
+                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                        </svg>
+                        <p class="mt-2">Your feedback has been sent to attorney.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button onClick="window.location.reload();" type="button" class="btn btn-secondary cancel-button" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+     $(function () {
+        ScrollWindow();
+    });
+
+      function ScrollWindow() {
+        $("html, body").animate({ scrollTop: 600 }, 0);
+    }
+
+    var passedID;
+
+    $(".table-button").click(function () {
+        passedID = $(this).data('id');
+        document.getElementById("attorneyID").value = passedID;
+    });
+
+
+    $(function () {
+        $('#submitfeedback').submit(function (e) {
+
+            e.preventDefault();
+            var emailValue = $("#fbtxt").val();
+            var rating = $("input[name='rate']:checked").val();
+
+            $.ajax({
+                url: '/feedback/SendEmails',
+                data: { ID: passedID, Feedback: emailValue, RatingValue: rating }
+            });
+
+            document.getElementById("sendfeedback").style.display = "none";
+            document.getElementById("feedbacksent").style.display = "block";
+        });
+
+
+    });
+
+
+</script>

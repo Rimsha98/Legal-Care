@@ -1,0 +1,191 @@
+﻿
+@{
+    ViewBag.Title = "Admin_Info";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+@section register{
+    <link href="~/Content/bootstrap330.min.css" rel="stylesheet" id="bootstrap-css" />
+    <script src="~/Scripts/bootstrap330.min.js"></script>
+    <script src="~/Scripts/jquery1111.min.js"></script>
+    <script src="~/Scripts/jquery191.min.js"></script>
+
+
+    <style>
+
+        .user-image-lg {
+            height: 180px;
+            width: 180px;
+            object-fit: cover;
+        }
+
+        .name, .join-date {
+            font-weight: normal;
+            color: black;
+        }
+
+        .join-date {
+            line-height: 1.2;
+            vertical-align: middle;
+        }
+
+
+
+        .email, .attorney-type {
+            color: #ACACAC;
+            display: block;
+            line-height: 1;
+        }
+
+        .attorney-type {
+            color: #AFA939;
+        }
+
+        .sm-head {
+            color: #AFA939;
+            font-weight: normal;
+        }
+
+        table tr td {
+            padding-left: 5px;
+            padding-right: 5px;
+            text-align: left;
+        }
+
+
+        .form-radio {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            display: inline-block;
+            position: relative;
+            background-color: transparent;
+            color: #AFA939;
+            height: 22px;
+            width: 22px;
+            border: 1px solid #c2c2c2;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-right: 7px;
+            outline: none;
+        }
+
+            .form-radio:checked::before {
+                position: absolute;
+                font: 13px/1 'Open Sans', sans-serif;
+                left: 4px;
+                top: 4px;
+                content: "\f00c";
+                font-family: FontAwesome;
+                outline: none;
+            }
+
+            .form-radio:checked {
+                background-color: #fff;
+                border: 1px solid #e0e0e0;
+                outline: none;
+            }
+
+        input[type="radio"]:focus {
+            outline: none;
+        }
+
+        .radio-label {
+            vertical-align: top;
+            margin-top: 5px;
+            font-weight: normal;
+            margin-left: 8px;
+        }
+
+        .admin-buttons {
+            height: 30px;
+            color: #fff;
+            cursor: pointer;
+            background-color: #222831;
+            outline: none;
+            border: none;
+            font-size: 12px;
+            width: 130px;
+        }
+
+            .admin-buttons:hover {
+                background-color: #505050;
+            }
+
+        .save {
+            background-color: #AFA939;
+        }
+
+            .save:hover {
+                background-color: #ded871;
+            }
+
+        .admin-buttons:focus {
+            outline: none;
+        }
+    </style>
+}
+
+<section>
+    <div class="row pb-4" style="background-color: #F8F9FA;">
+        <div class="col-md-4 mt-2 mb-2">
+            <div class="search-bar">
+                <input type="text" placeholder="enter text to search ..." class="float-left" />
+                <button type="button" class="float-left search-btn"> <i class="fas fa-search"> </i> </button>
+            </div>
+        </div>
+        <div class="col-md-8 mt-2 mb-2 center">
+            <button class="buttons btn1 float-right w-25">Back</button>
+        </div>
+    </div>
+
+    <div class="sub-content" >
+        <div class="row m-0">
+            <div class="col-md-7 p-3" style="background-color: #fcfcfc;  text-align: center">
+                <img src="~/images/person_3.jpg" class=" mt-5 mb-3 user-image-lg rounded rounded-circle" /><br />
+                <label class="name">Farhan Ahmed Siddiqui</label>
+                <span class="attorney-type">Consultation Admin</span>
+
+                <table class="mt-5 mb-5" style="margin: 0 auto;">
+                    <tr>
+                        <td><label class="sm-head">Gender: </label></td>
+                        <td><label class="name">Male</label></td>
+                    </tr>
+                    <tr>
+                        <td><label class="sm-head">Email: </label></td>
+                        <td><label class="name">farhan2398@hotmail.com</label></td>
+                    </tr>
+                    <tr>
+                        <td><label class="sm-head">Country: </label></td>
+                        <td><label class="name">Pakistan</label></td>
+                    </tr>
+                    <tr>
+                        <td><label class="sm-head">City: </label></td>
+                        <td><label class="name">Islamabad</label></td>
+                    </tr>
+                    <tr>
+                        <td><label class="sm-head">Contact: </label></td>
+                        <td><label class="name">+923311380637</label></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-5 p-3">
+                <div class="m-5" style="text-align: left;">
+                    <label class="mb-4" style="font-weight: normal">Admin Role</label><br />
+                    <input type="radio" name="role" class="form-radio" checked="checked" /><label class="radio-label"> Articles</label><br />
+                    <input type="radio" name="role" class="form-radio" /><label class="radio-label"> Blog</label><br />
+                    <input type="radio" name="role" class="form-radio" /><label class="radio-label"> Newsletter</label><br />
+                    <input type="radio" name="role" class="form-radio" /><label class="radio-label"> Consultation</label><br />
+                    <input type="radio" name="role" class="form-radio" /><label class="radio-label"> Contact</label><br />
+                    <input type="radio" name="role" class="form-radio" /><label class="radio-label"> Site Info</label><br />
+                    <input type="radio" name="role" class="form-radio" /><label class="radio-label"> Feedback</label>
+                </div>
+                <div class="p-3" style="border-top: 1px solid #ddd; width: 100%; text-align: center">
+                    <button class="admin-buttons mt-2 mb-2">Remove Admin</button>
+                    <button class="admin-buttons save ">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

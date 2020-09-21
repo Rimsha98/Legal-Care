@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "SiteInfo";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+@section register{
+    <link href="~/Content/bootstrap330.min.css" rel="stylesheet" id="bootstrap-css" />
+    <script src="~/Scripts/bootstrap330.min.js"></script>
+    <script src="~/Scripts/jquery1111.min.js"></script>
+    <script src="~/Scripts/jquery191.min.js"></script>
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+
+    <style>
+        .field-label{
+            font-size: 14px;
+          font-weight: normal;
+        }
+
+        .custom-control{
+            background-color: #fcfcfc;
+            min-height: 40px;
+            color: #535557;
+        }
+
+        .custom-control:focus{
+            color: black;
+        }
+
+        .txtarea{
+            min-height: 70px;
+            resize: none;
+        }
+
+        .buttons{
+            width: 150px;
+        }
+    </style>
+}
+
+<section>
+    <div class="row pb-4" style="background-color: #F8F9FA;">
+        <div class="col-md-4 mt-2 mb-2">
+            <div class="search-bar">
+                <input type="text" placeholder="enter text to search ..." class="float-left" />
+                <button type="button" class="float-left search-btn"> <i class="fas fa-search"> </i> </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="sub-content" >
+
+        <fieldset class="mt-5 ">
+            <legend class="p-2 ml-3">1- Header Information</legend>
+            <div class="ml-3 mr-3 p-2 mt-4 ">
+                <label class="field-label">Welcome message</label>
+                <input type="text" class="custom-control" value="welcome to legalcare" />
+            </div>
+            <div class="ml-3 mr-3 p-2 mt-4 mb-4 ">
+                <label class="field-label">Header message</label>
+                <textarea class="custom-control txtarea">We have help thousands of people to get relief from national wide fights wrongfull denials. Now they trusted legalcare attorneys</textarea>
+            </div>
+            <div class="ml-3 mr-3 p-2 mt-4 mb-4 ">
+                <button class="buttons btn1 mb-5 float-right">Save Changes</button>
+            </div>
+        </fieldset>
+
+        <fieldset class="mt-5 mb-5">
+            <legend class="p-2 ml-3">2- Services</legend>
+            <div class="ml-3 mr-3 p-2 mt-4 mb-4 ">
+                <label class="field-label">Why select us?</label>
+                <textarea class="custom-control txtarea">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your.</textarea>
+            </div>
+            <div class="ml-3 mr-3 p-2 mt-4 mb-4 ">
+                <label class="field-label">Section 1</label>
+                <input type="text" class="custom-control mb-3" value="Fight for Justice" />
+                <input type="text" class="custom-control" value="Seeking justice in the world is a sed significant emotional and investment when we follow this call." />
+
+            </div>
+            <div class="ml-3 mr-3 p-2 mt-4 mb-4 ">
+                <label class="field-label">Section 2</label>
+                <input type="text" class="custom-control mb-3" value="Best Case Strategy" />
+                <input type="text" class="custom-control" value="Seeking justice in the world is a sed significant emotional and investment when we follow this call." />
+
+            </div>
+            <div class="ml-3 mr-3 p-2 mt-4 mb-4 ">
+                <label class="field-label">Section 3</label>
+                <input type="text" class="custom-control mb-3" value="Experienced Attorney" />
+                <input type="text" class="custom-control" value="Seeking justice in the world is a sed significant emotional and investment when we follow this call." />
+
+            </div>
+            <div class="ml-3 mr-3 p-2 mt-4 mb-4 ">
+                <button class="buttons btn1 mb-5 float-right">Save Changes</button>
+            </div>
+        </fieldset>
+
+        <fieldset class="mt-5 mb-5">
+            <legend class="p-2 ml-3">3- About</legend>
+            <div class="ml-3 mr-3 p-2 mt-4 mb-4 ">
+                <label class="field-label">About</label>
+                <input type="text" class="custom-control mb-3" value="We Always Fight For Your Justice to Win" />
+                <input type="text" class="custom-control" value="Far far away, behind the word mountains, far from the countries Vokalia and Consonantia" />
+
+            </div>
+
+            <div class="ml-3 mr-3 p-2 mt-4 mb-4 ">
+                <label class="field-label">Our Mission</label>
+                <textarea class="custom-control txtarea">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</textarea>
+            </div>
+            <div class="ml-3 mr-3 p-2 mt-4 mb-4 ">
+                <label class="field-label">Our Vision</label>
+                <textarea class="custom-control txtarea">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</textarea>
+            </div>
+            <div class="ml-3 mr-3 p-2 mt-4 mb-4 ">
+                <label class="field-label">Our Value</label>
+                <textarea class="custom-control txtarea">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</textarea>
+            </div>
+
+            <div class="ml-3 mr-3 p-2 mt-4 mb-4 ">
+                <button class="buttons btn1 mb-5 float-right">Save Changes</button>
+            </div>
+        </fieldset>
+
+    </div>
+</section>
+

@@ -1,0 +1,219 @@
+﻿
+@{
+    ViewBag.Title = "My Articles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderStyling{
+    <script src="https://kit.fontawesome.com/e1303a18ed.js" crossorigin="anonymous"></script>
+    <style>
+
+        .max-lines {
+            display: block; /* or inline-block */
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+            overflow: hidden;
+            max-height: 8em;
+        }
+
+        .headerHeading {
+            color: #fff !important;
+        }
+
+        .errspan {
+            float: right;
+            margin-right: 8px;
+            margin-top: -32px;
+            position: relative;
+            z-index: 2;
+            color: red;
+            cursor: pointer;
+            display: none;
+        }
+
+
+        input.input-validation-error {
+            border: 0.083em solid red;
+        }
+
+        select.input-validation-error {
+            border: 0.083em solid red;
+        }
+
+
+        /* Bootstrap 4 text input with search icon */
+
+        .has-search .form-control {
+            padding-left: 2.375rem;
+        }
+
+        .has-search .form-control-feedback {
+            position: absolute;
+            z-index: 2;
+            display: block;
+            width: 2.375rem;
+            height: 2.375rem;
+            line-height: 2.375rem;
+            text-align: center;
+            pointer-events: none;
+            color: #aaa;
+        }
+    </style>
+}
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="slider-text">
+            <div class="row no-gutters  align-items-center justify-content-start">
+
+                <div class="col-6" style="height:220px;">
+
+
+                </div>
+
+            </div>
+            <div class="row no-gutters   align-items-center justify-content-start">
+
+                <div class="col-md-6 ftco-animate">
+
+                    <h3 class="mb-4 headerHeading">You can write your own articles<br /> and push them to the articles feed.</h3>
+                    <p><a href="#" class="btn btn-primary  py-2 px-4" style="width:40%;">Compose Articles</a></p>
+                    <p><a href="@Url.Action("AllArticle","Home")" class="btn btn-primary py-2 px-4" style="width:40%;">Articles</a></p>
+
+                </div>
+
+            </div>
+            <div class="row no-gutters align-items-end   justify-content-center pt-5">
+
+                <div class="col-md-9 ftco-animate pb-5 text-center">
+                    <h1 class="mb-3 bread">My Articles</h1>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="@Url.Action("index","Home")">Home <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="@Url.Action("AllArticle","Home")">Articles<i class="ion-ios-arrow-forward"></i></a></span> <span>My Article <i class="ion-ios-arrow-forward"></i></span></p>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+@model IPagedList<SeedaniLegalCare.Models.Article>
+@using PagedList;
+@using PagedList.Mvc;
+<section class="ftco-section bg-light">
+
+    <div class="container">
+        <div class="row no-gutters  ">
+
+            <div class="col-md-6 form-group  "></div>
+
+
+            <div class="col-md-6 form-group  ">
+                  @using (Html.BeginForm("my_articles", "articles", FormMethod.Get))
+                  {
+
+
+
+                <div style="width:auto; overflow:hidden; border:1px solid grey;border-radius: 0.25rem 0.25rem 0.25rem 0.25rem;">
+
+
+
+                    <input type="text" class="form-control" style="width:90%; float:left;border-radius: 0.25rem 0rem 0rem 0.25rem;" placeholder="Search any article by typing here..">
+
+
+
+                    <button class="btn" value="search"  style="width:10%; float:left;height:52px;border-radius: 0rem 0.25rem 0.25rem 0rem;" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    
+                </div>
+
+                  }
+
+
+            </div>
+
+        </div>
+
+        <div class="row ">
+            <h3>Published Articles</h3>
+            @foreach (var art in Model)
+            {
+                if (art.Approved == "1")
+                {
+                    <div class="row border no-gutters mb-4 " style="background-color: #fff;">
+                        <div class="col-md-4 p-4">
+                            <img src="~/images/case-3.jpg" class="img-fluid" />
+                        </div>
+
+                        <div class="col-md-8 p-4">
+                            <a href="@Url.Action("article", "articles", new { Id = art.ID }, null)"><h2>@art.Title</h2></a>
+                            <p class="pt-2 max-lines" style="font-size: 15px;">@art.Content</p>
+                            <label style="font-size: 15px;">Date posted: @art.Date</label>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+
+        <div class="row ">
+            <h3>Pending Articles</h3>
+            @foreach (var art in Model)
+            {
+                if (art.Approved == "0")
+                {
+                    <div class="row border no-gutters mb-4 " style="background-color: #fff;">
+                        <div class="col-md-4 p-4">
+                            <img src="~/images/case-3.jpg" class="img-fluid" />
+                        </div>
+
+                        <div class="col-md-8 p-4">
+                            <a href="@Url.Action("article", "articles", new { Id = art.ID }, null)"><h2>@art.Title</h2></a>
+                            <p class="pt-2 max-lines" style="font-size: 15px;">@art.Content</p>
+                            <label style="font-size: 15px;">Date posted: @art.Date</label>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+
+        <!-- Pagination -->
+        <div>
+            @Html.PagedListPager(Model, page => Url.Action("my_articles", new
+            {
+                page,
+                search = Request.QueryString["search"],
+            }),
+            new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded })
+        </div>
+
+    </div>
+</section>
+
+<section class="ftco-section ftco-no-pt ftco-no-pb bg-light">
+    <div class="container">
+        <div class="row d-flex justify-content-end">
+            <div class="col-md-8 py-4 px-md-4 bg-primary">
+                <div class="row">
+                    <div class="col-md-6 ftco-animate d-flex align-items-center">
+                        <h2 class="mb-0" style="color:white; font-size: 24px;">Subcribe to our Newsletter</h2>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center">
+                        <form action="#" class="subscribe-form">
+                            <div class="form-group d-flex">
+                                <input type="text" class="form-control" placeholder="Enter email address">
+                                <input type="submit" value="Subscribe" class="submit px-3">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

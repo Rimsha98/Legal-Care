@@ -1,0 +1,191 @@
+﻿
+@{
+    ViewBag.Title = "Newsletter List";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+
+@section register{
+    <style>
+        .container {
+            width: 90% !important;
+            border: 1px solid #ddd;
+        }
+
+        .user-image {
+            height: 50px;
+            width: 50px;
+            object-fit: cover;
+        }
+
+        .user-image-lg {
+            height: 180px;
+            width: 180px;
+            object-fit: cover;
+        }
+
+        .name, .join-date {
+            font-weight: normal;
+            color: black;
+        }
+
+        .join-date {
+            line-height: 1.2;
+            vertical-align: middle;
+        }
+
+
+
+        .email, .attorney-type {
+            color: #ACACAC;
+            display: block;
+            line-height: 1;
+        }
+
+        .attorney-type {
+            color: #AFA939;
+        }
+
+        .expand-icon, .delete-icon2 {
+            background-color: #AFA939;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+        }
+
+            .expand-icon:focus {
+                outline: none;
+            }
+
+            .expand-icon:hover {
+                background-color: #ded871;
+            }
+
+        .footer-content, .header-content {
+            background-color: #F8F9FA;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            border-top: none;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .header-content{ border: 1px solid #ddd; border-bottom: none; text-align: left; font-weight: bold; }
+        .header-content p { margin: 0; }
+
+        textarea{background-color: #fff!important; resize: none; width: 100%; min-height: 102px; max-height: 102px; overflow: hidden; border: none; }
+
+        .txt-area{width: 90% !important; margin: 0 auto !important;}
+    </style>
+}
+
+<section>
+    <div class="row pb-4 top-section">
+        <div class="col-md-4 mt-2 mb-2">
+            <div class="search-bar">
+                <input type="text" placeholder="Search newsletter ..." class="float-left" />
+                <button type="button" class="float-left search-btn"> <i class="fas fa-search"> </i> </button>
+            </div>
+        </div>
+        <div class="col-md-8 mt-2 mb-2 center">
+            <button class="buttons btn1 float-right" onclick="location.href='/newsletter/compose_newsletter'">Create Newsletter</button>
+        </div>
+    </div>
+
+    <div class="sub-content mb-5">
+        <div class="row no-gutters p-5 ">
+            <div class="col-lg-4 mb-3">
+                <header class="p-3 header-content">
+                    <p>This is a small heading that briefly defines this newsletter</p>
+                </header>
+                <div class="container-fluid txt-area p-3 border">
+                    <textarea readonly="readonly" disabled="disabled">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</textarea>
+                </div>
+                <footer class="p-3 footer-content">
+                    <span class="join-date m-0 p-0 mt-1 float-left">Joined: 28/10/19</span>
+                    <button class="expand-icon float-right" title="view" onclick="location.href='/newsletter/newsletter'"><i class="fas fa-arrow-up"></i></button>
+                </footer>
+            </div>
+            <div class="col-lg-4 mb-3">
+                <header class="p-3 header-content">
+                    <p>This is a small heading that briefly defines this newsletter</p>
+                </header>
+                <div class="container-fluid txt-area p-3 border">
+                    <textarea readonly="readonly" disabled="disabled">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</textarea>
+                </div>
+                <footer class="p-3 footer-content">
+                    <span class="join-date m-0 p-0 mt-1 float-left">Joined: 28/10/19</span>
+                    <button class="expand-icon float-right" title="view" onclick="location.href='/newsletter/newsletter'"><i class="fas fa-arrow-up"></i></button>
+                </footer>
+            </div>
+            <div class="col-lg-4 mb-3">
+                <header class="p-3 header-content">
+                    <p>This is a small heading that briefly defines this newsletter</p>
+                </header>
+                <div class="container-fluid txt-area p-3 border">
+                    <textarea readonly="readonly" disabled="disabled">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</textarea>
+                </div>
+                <footer class="p-3 footer-content">
+                    <span class="join-date m-0 p-0 mt-1 float-left">Joined: 28/10/19</span>
+                    <button class="expand-icon float-right" title="view" onclick="location.href='/newsletter/newsletter'"><i class="fas fa-arrow-up"></i></button>
+                </footer>
+            </div>
+        </div>
+
+        <div class="row no-gutters pl-5 pr-5 pb-5 ">
+            <div class="col-lg-4 mb-3">
+                <header class="p-3 header-content">
+                    <p>This is a small heading that briefly defines this newsletter</p>
+                </header>
+                <div class="container-fluid txt-area p-3 border">
+                    <textarea readonly="readonly" disabled="disabled">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</textarea>
+                </div>
+                <footer class="p-3 footer-content">
+                    <span class="join-date m-0 p-0 mt-1 float-left">Joined: 28/10/19</span>
+                    <button class="expand-icon float-right" title="view" onclick="location.href='/newsletter/newsletter'"><i class="fas fa-arrow-up"></i></button>
+                </footer>
+            </div>
+            <div class="col-lg-4 mb-3">
+                <header class="p-3 header-content">
+                    <p>This is a small heading that briefly defines this newsletter</p>
+                </header>
+                <div class="container-fluid txt-area p-3 border">
+                    <textarea readonly="readonly" disabled="disabled">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</textarea>
+                </div>
+                <footer class="p-3 footer-content">
+                    <span class="join-date m-0 p-0 mt-1 float-left">Joined: 28/10/19</span>
+                    <button class="expand-icon float-right" title="view" onclick="location.href='/newsletter/newsletter'"><i class="fas fa-arrow-up"></i></button>
+                </footer>
+            </div>
+            <div class="col-lg-4 mb-3">
+                <header class="p-3 header-content">
+                    <p>This is a small heading that briefly defines this newsletter</p>
+                </header>
+                <div class="container-fluid txt-area p-3 border">
+                    <textarea readonly="readonly" disabled="disabled">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</textarea>
+                </div>
+                <footer class="p-3 footer-content">
+                    <span class="join-date m-0 p-0 mt-1 float-left">Joined: 28/10/19</span>
+                    <button class="expand-icon float-right" title="view" onclick="location.href='/newsletter/newsletter'"><i class="fas fa-arrow-up"></i></button>
+                </footer>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <ul class="pagination pr-4 pull-right">
+            <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+        </ul>
+    </div>
+</section>

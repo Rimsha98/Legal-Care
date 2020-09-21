@@ -1,0 +1,147 @@
+﻿@model SeedaniLegalCare.Models.Attorney
+@{
+    ViewBag.Title = @Model.Attorney_Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <style>
+        table tr td {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: black;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        table tr td label {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .name{
+            font-weight: bold;
+            color: #2A2A2A;
+            font-size: 18px;
+        }
+
+        .role{
+            display: block;
+            line-height: 0.5;
+            color: #AFA939;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        
+
+        .lbl-head label, .lbl-head {
+            color: #AFA939;
+            font-weight: 500;
+        }
+
+        .data{
+            display: block;
+            line-height: 1;
+            color: black;
+            font-weight: normal;
+            
+        }
+    </style>
+}
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate pb-5 text-center">
+                <h1 class="mb-3 bread">My Profile</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="@Url.Action("index", "Home")">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>My Profile <i class="ion-ios-arrow-forward"></i></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section p-0">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 pt-5 pb-5" style="background-color: #F8F9FA;">
+                <table style="margin: 0 auto !important; ">
+                    <tr>
+                        <td colspan="2" class="center"><img class="profile-pic rounded-circle mb-4" src="~/images/person_1.jpg" width="200" height="200" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="center">
+                            <label class="name">@Model.Attorney_Name<span class="role mb-4">@Model.Attorney_Role</span></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lbl-head"><label>Gender: </label></td>
+                        <td class="pl-3">@Model.Attorney_Gender</td>
+                    </tr>
+                    <tr>
+                        <td class="lbl-head"><label>Email: </label></td>
+                        <td class="pl-3">@Model.Attorney_Email</td>
+                    </tr>
+                    <tr>
+                        <td class="lbl-head"><label>Country: </label></td>
+                        <td class="pl-3">@Model.Attorney_Country</td>
+                    </tr>
+                    <tr>
+                        <td class="lbl-head"><label>City: </label></td>
+                        <td class="pl-3">@Model.Attorney_City</td>
+                    </tr>
+                    <tr>
+                        <td class="lbl-head"><label>Contact: </label></td>
+                        <td class="pl-3">@Model.Attorney_Number</td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="col-lg-6 pt-5 pb-5">
+                <table style="margin: 0 auto !important; width: 90%;">
+                    <tr class="center">
+                        <td><label class="name mb-4">Professional Detail</label></td>
+                    </tr>
+                    <tr>
+                        <td><label class="lbl-head">Education<span class="data mb-2">@Model.Attorney_Education</span></label></td>
+                    </tr>
+                    <tr>
+                        <td><label class="lbl-head">Years of Experience<span class="data mb-2">@Model.Attorney_Experience Years</span></label></td>
+                    </tr>
+                    <tr>
+                        <td><label class="lbl-head">Date of Birth<span class="data mb-2">@Model.Attorney_DOB</span></label></td>
+                    </tr>
+                    <tr>
+                        <td><label class="lbl-head">Law Firm<span class="data mb-2">@Model.Attorney_Firm</span></label></td>
+                    </tr>
+                    <tr>
+                        <td><label class="lbl-head">Cases Handled<span class="data mb-2">@Model.Attorney_Cases Cases</span></label></td>
+                    </tr>
+                    <tr>
+                        <td><label class="lbl-head">Certification<span class="data mb-2">@Model.Attorney_Certification</span></label></td>
+                    </tr>
+                    <tr>
+                        <td><label class="lbl-head">Languages<span class="data">@Model.Attorney_Languages</span></label></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script>
+     ScrollWindow();
+
+    function ScrollWindow() {
+        $("html, body").animate({ scrollTop: 650 }, 600);
+    }
+</script>

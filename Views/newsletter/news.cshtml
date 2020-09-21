@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = null;
+}
+
+    <link rel="stylesheet" type="text/css" href="~/Content/css/style.css" />
+
+@model List<string>
+
+<style>
+    body{
+        box-sizing: border-box;
+        margin: 1.5rem;
+        padding: 0;
+    }
+
+    .mybutton{
+        border: none;
+        color: white;
+        background-color: red;
+    }
+
+    .header-section{
+        background-color: #222831;
+    }
+
+    .title{
+        text-align: center;
+    }
+
+    .title h1{
+        color: white;
+        font-weight: 600;
+        margin: 0;
+        padding: 0;
+        font-size: 2rem;
+    }
+
+    .title h3{
+        color: white;
+        font-weight: 500;
+        margin: 0;
+        padding: 0;
+        font-size: 1.7rem;
+        margin-top: -0.8rem;
+    }
+
+    .image-left{ background-color: #fbfbfc; }
+    .image-right { background-color: #f5f5f5; }
+    .asd { max-height: 400px; width: 100%; }
+
+    h1, .heading{ font-size: 20px; font-weight: 500; }
+
+    .parah{ font-size: 15px; }
+    .linkstyle { font-size: 15px; }
+
+    .footer-section{
+        background-color: #222831;
+        color: white;
+    }
+
+</style>
+
+<header class="container-fluid p-3 header-section">
+    <div class="title">
+        <h1>LEGALCARE</h1>
+        <h3>NEWSLETTER</h3>
+    </div>
+</header>
+
+
+@foreach (var element in Model)
+{
+    @Html.Raw(element)
+} 
+
+<footer class="container-fluid p-3 footer-section" style="text-align: right">
+    <div class="pt-4 pb-4" style="overflow: hidden">
+        <p class="p-0 m-0">Date: 20948012</p>
+        <p class="p-0 m-0">newsletter@legalcare.com</p>
+        <p class="p-0 m-0">newsletter@legalcare.com</p>
+    </div>
+</footer>

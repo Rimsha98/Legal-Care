@@ -1,0 +1,321 @@
+﻿
+@{
+    ViewBag.Title = "Account Settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/e1303a18ed.js" crossorigin="anonymous"></script>
+
+    <style>
+        .form-group {
+            width: 75%;
+        }
+    </style>
+}
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_1.jpg')" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate pb-5 text-center">
+                <h1 class="mb-3 bread">Account Settings</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="@Url.Action("Settings","Accounts")">Home <i class="ion-ios-arrow-forward"></i></a></span><span>Accounts <i class="ion-ios-arrow-forward"></i> Account Settings <i class="ion-ios-arrow-forward"></i></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section ftco-no-pt ftco-no-pb mt-5 mb-5">
+
+    <div class="container p-0 mb-5 " style="width: 80%; ">
+        <div class="row mb-0 no-gutters w-100">
+            <h1 class="section-head col-lg-3 pt-2 pb-2">General Settings</h1>
+        </div>
+        <div class="row mb-0 pb-5 pt-5 no-gutters w-100 settings-section border" style="background-color: #F8F9FA;">
+            <div class="col-lg-5 float-left float-md-none">
+
+                <div class="form-group mb-3" style="text-align: center">
+                    <img src="~/images/Default Image.png" id="blah" alt="user image" class="profile-pic img-thumbnail " style="width: 12rem; height: 12rem" />
+                    <br />
+                    <label for="imgInp" class="ChooseFile mt-3 p-2" style="width: 12rem">Select Image</label><br />
+                    <input type='file' id="imgInp" runat="server" accept=".jpg,.jpeg,.png" onchange="validateFileType()" />
+                </div>
+            </div>
+
+            <div class="col-lg-7 float-left float-md-none">
+                <div class="form-group ml-lg-0 mb-3 ">
+                    <label>Email ID</label>
+                    <input type="text" class="custom-control disabled" placeholder="load email here" readonly="readonly" />
+                </div>
+
+                <div class="form-group ml-lg-0 mb-3">
+                    <label>Password</label>
+                    <div style="width: 100%; overflow: hidden">
+                        <div class="float-left" style="width: 92%">
+                            <input type="password" class="custom-control pass" placeholder="load password here" id="password" />
+                        </div>
+                        <div class="float-left" style="width: 8%">
+                            <button id="toggle" class="togglebtn inp" onclick="Toggle_Password()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ml-lg-0 mb-5">
+                    <label>Confirm Password</label>
+                    <input type="text" class="custom-control" placeholder="re-enter password" />
+                </div>
+
+                <div class="form-group ml-lg-0">
+                    <button class="save-button p-2 float-right">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="container p-0 mb-5 " style="width: 80%; display: none" id="attorney-settings">
+        <div class="row mb-0 no-gutters w-100">
+            <h1 class="section-head col-lg-3 pt-2 pb-2">Attorney Information</h1>
+        </div>
+        <div class="row mb-0 pb-5 pt-5 no-gutters w-100 settings-section border" style="background-color: #F8F9FA;">
+            <div class="col-lg-6">
+                <div class="form-group mb-3 ">
+                    <label>Full Name</label>
+                    <input type="text" class="custom-control" placeholder="enter your full name" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Date of Birth</label>
+                    <input type="text" class="custom-control" placeholder="-- / -- / ----" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Attorney Role</label>
+                    <select class="custom-control">
+                        <option selected="selected">select your role as attorney</option>
+                        <option>Criminal Attorney</option>
+                        <option>Tax Attorney</option>
+                        <option>Business Attorney</option>
+                    </select>
+                </div>
+
+
+
+            </div>
+
+            <div class="col-lg-6 align-content-center">
+                <div class="form-group mb-3 ">
+                    <label>Country</label>
+                    <select class="custom-control">
+                        <option selected="selected">select your country</option>
+                        <option>Pakistan</option>
+                        <option>Afghanistan</option>
+                        <option>Bangladesh</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-3 ">
+                    <label>City</label>
+                    <input type="text" class="custom-control" placeholder="enter your city" />
+                </div>
+
+
+
+                <div class="form-group ">
+                    <label>Mobile Number</label>
+                    <div style="width: 100%; overflow: hidden">
+                        <div class="float-left" style="width: 15%">
+                            <input type="text" class="custom-control ronly" readonly="readonly" placeholder="+00" />
+                        </div>
+                        <div class="float-left" style="width: 85%">
+                            <input type="text" class="custom-control inp" />
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="row mb-0 pb-5 pt-5 no-gutters w-100 settings-section border" style="background-color: #F8F9FA;">
+            <hr />
+            <div class="col-lg-6">
+                <div class="form-group mb-3">
+                    <label>Years of Experience</label>
+                    <input type="text" class="custom-control" placeholder="enter the number of years of experience" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Education</label>
+                    <input type="text" class="custom-control" placeholder="what university did you go to?" />
+                </div>
+
+                <div class="form-group mb-3 ">
+                    <label>Cases Handled</label>
+                    <input type="text" class="custom-control" placeholder="enter the number of cases handled" />
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group mb-3 ">
+                    <label>Law Firm</label>
+                    <input type="text" class="custom-control" placeholder="what law firm did you work at?" />
+                </div>
+
+                <div class="form-group mb-3 ">
+                    <label>Languages</label>
+                    <input type="text" class="custom-control" placeholder="enter the languages you speak" />
+                </div>
+
+                <div class="form-group mb-5">
+                    <label>Certification</label>
+                    <input type="text" class="custom-control" placeholder="what certifications do you have?" />
+                </div>
+
+                <div class="form-group">
+                    <button class="save-button p-2 float-right">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container p-0 mb-5 " style="width: 80%; display: none;" id="client-settings">
+        <div class="row mb-0 no-gutters w-100">
+            <h1 class="section-head col-lg-3 pt-2 pb-2">Client Information</h1>
+        </div>
+        <div class="row mb-0 pb-5 pt-5 no-gutters w-100 settings-section border" style="background-color: #F8F9FA;">
+            <div class="col-lg-6">
+                <div class="form-group mb-3">
+                    <label>Full Name</label>
+                    <input type="text" class="custom-control" placeholder="enter your full name" />
+
+
+                </div>
+
+
+
+                <div class="form-group mb-3 ">
+                    <label>Mobile Number</label>
+                    <div style="width: 100%; overflow: hidden">
+                        <div class="float-left" style="width: 15%">
+                            <input type="text" class="custom-control ronly" readonly="readonly" placeholder="+00" />
+                        </div>
+                        <div class="float-left" style="width: 85%">
+                            <input type="text" class="custom-control inp" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group mb-3 ">
+                    <label>Country</label>
+                    <select class="custom-control">
+                        <option selected="selected">select your country</option>
+                        <option>Pakistan</option>
+                        <option>Afghanistan</option>
+                        <option>Bangladesh</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-5 ">
+                    <label>City</label>
+                    <input type="text" class="custom-control" placeholder="enter your city" />
+                </div>
+
+                <div class="form-group">
+                    <button class="save-button p-2 float-right">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@if (Session["AccountType"] == "client")
+{
+    <script>
+        var client = document.getElementById("client-settings");
+        var attorney = document.getElementById("attorney-settings");
+
+        client.style.display = "block";
+        attorney.style.display = "none";
+    </script>
+}
+else if (Session["AccountType"] == "attorney")
+{
+    <script>
+        var client = document.getElementById("client-settings");
+        var attorney = document.getElementById("attorney-settings");
+
+        client.style.display = "none";
+        attorney.style.display = "block";
+    </script>
+}
+
+<script>
+    $(function () {
+        ScrollWindow();
+    });
+
+
+    function ScrollWindow() {
+        $("html, body").animate({ scrollTop: 650 }, 600);
+    }
+
+
+    function Toggle_Password() {
+        var temp;
+        temp = document.getElementById("password");
+        if (temp.type === "password") {
+            temp.type = "text";
+            document.getElementById("toggle").style.backgroundColor = "#e0e0e0";
+        } else {
+            temp.type = "password";
+            document.getElementById("toggle").style.backgroundColor = "transparent";
+        }
+    }
+
+    function validateFileType() {
+        var fileName = document.getElementById("imgInp").value;
+        var idxDot = fileName.lastIndexOf(".") + 1;
+        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+        if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
+            //TO DO
+        } else {
+            $('#DummyButton').trigger('click');
+        }
+    }
+
+
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp").change(function () {
+        readURL(this);
+    });
+
+</script>
