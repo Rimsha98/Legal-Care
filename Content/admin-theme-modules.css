@@ -1,0 +1,157 @@
+﻿
+/* ------ Modal ------ */
+.modal {
+    z-index: 9999;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.modal-dialog {
+    z-index: 99999;
+}
+
+.close-modal-sm {
+    background-color: #E82F2F;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    width: 23px;
+    height: 23px;
+    font-size: 14px;
+    padding: 1px 0 0 1px;
+}
+
+.close-modal-sm:hover { background-color: #FF7E7E; }
+.close-modal-sm:focus { outline: none; }
+
+.cancel-button {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+    color: #fff !important;
+}
+
+.cancel-button:hover{
+    background-color: #888888 !important;
+    border-color: #888888 !important;
+}
+
+.proceed-button {
+    background-color: #AFA939 !important;
+    border-color: #AFA939 !important;
+}
+
+.proceed-button:hover{
+    background-color: #ded871 !important;
+    border-color: #ded871 !important;
+}
+
+.cancel-button:focus, .proceed-button:focus { outline: none !important; }
+
+
+/* ------ Tables ------ */
+.users-table thead {
+    background-color: #222831;
+    font-size: 12px;
+    color: #fff;
+}
+
+.users-table thead th { text-align: center; }
+
+.users-table tbody tr td {
+    vertical-align: middle;
+    font-size: 13px;
+}
+
+.user-image {
+    height: 35px;
+    width: 35px;
+    object-fit: cover;
+}
+
+.approve-request, .delete-request, .expand-button, .edit-button, .comments-button {
+    background-color: #3AB123;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    width: 27px;
+    height: 27px;
+}
+
+.edit-button {
+    background-color: #222831;
+}
+
+.comments-button {
+    background-color: #31AF91;
+}
+
+.delete-request {
+    background-color: #E82F2F;
+    font-size: 15px;
+}
+
+.expand-button {
+    background-color: #AFA939;
+}
+
+.delete-request:focus, .approve-request:focus, .expand-button:focus, .edit-button:focus, .comments-button:focus {
+    outline: none;
+}
+
+.approve-request:hover {
+    background-color: #55E139;
+}
+
+.delete-request:hover {
+    background-color: #FF7E7E;
+}
+
+.expand-button:hover {
+    background-color: #ded871;
+}
+
+.edit-button:hover {
+    background-color: #5A6472;
+}
+
+.comments-button:hover {
+    background-color: #4CECC6;
+}
+
+.btn-cell {
+    width: 3%;
+}
+
+.sm-head {
+    color: #AFA939;
+    font-weight: bold;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th,
+.table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    border-top: none !important;
+    border-bottom: 1px solid #ddd !important;
+}
+
+/* ------ Bootstrap Pagination ------ */
+.pagination {
+    margin-right: 15px;
+    margin-top: 0px !important;
+}
+
+.pagination > li > a {
+    color: #222831 !important;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover,
+.pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: #AFA939 !important;
+    border-color: #AFA939 !important;
+    color: #fff !important;
+}
